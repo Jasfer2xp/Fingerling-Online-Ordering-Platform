@@ -87,16 +87,21 @@ All credentials, API keys, OAuth values, database passwords, and payment-service
 ## Project directories
 
 ```text
-admin/       Administrator portal
-api/         Application endpoints
-auth/        Authentication and account flows
-classes/     Domain classes and business logic
-config/      Configuration loaders (no credentials)
-customer/    Customer portal
-database/    Database-related files and migrations
-includes/    Shared application components
-supplier/    Supplier portal
-uploads/     Runtime user-upload directory (not version-controlled)
+apps/web/                PHP web application and public routes
+apps/web/admin/          Administrator portal
+apps/web/api/            Application endpoints
+apps/web/auth/           Authentication and account flows
+apps/web/customer/       Customer portal
+apps/web/supplier/       Supplier portal
+apps/web/uploads/        Runtime user-upload directory (not version-controlled)
+database/migrations/     Active database migrations
+database/legacy-migrations/  Earlier database migration scripts
+docs/                    Project documentation
+packages/phpmailer/      Mail library used by the application
+runtime/backups/         Generated database backups (not version-controlled)
+runtime/logs/            Application logs (not version-controlled)
+runtime/sessions/        Local session files (not version-controlled)
+tools/                   Repository tooling and diagnostics
 ```
 
 ## License

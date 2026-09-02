@@ -5,20 +5,20 @@
 
 # Editor and PHP runtime files
 .vscode/
-/logs/*.log
-/sessions/*
+/runtime/logs/*.log
+/runtime/sessions/*
 
 # Local database exports and generated/debug artifacts
-/backups/**/*.sql
+/runtime/backups/**/*.sql
 *.backup
 /check_*.php
 /debug_*.php
 /test_*.php
 
 # User-provided data; retain directory guards required by the application
-/uploads/**
-!/uploads/**/
-!/uploads/**/index.php
-/customer/uploads/**
-!/customer/uploads/**/
-!/customer/uploads/**/index.php
+/apps/web/uploads/**
+!/apps/web/uploads/**/
+!/apps/web/uploads/**/index.php
+/apps/web/customer/uploads/**
+!/apps/web/customer/uploads/**/
+!/apps/web/customer/uploads/**/index.php

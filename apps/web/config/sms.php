@@ -10,7 +10,8 @@ if (!function_exists('sendSemaphoreSMS')) {
      */
     function sendSemaphoreSMS($orderId, $customerPhone, $message)
     {
-        $logDir = __DIR__ . '/../logs';
+        $projectRoot = defined('PROJECT_ROOT') ? PROJECT_ROOT : dirname(__DIR__, 3);
+        $logDir = defined('RUNTIME_PATH') ? RUNTIME_PATH . '/logs' : $projectRoot . '/runtime/logs';
         if (!is_dir($logDir)) {
             mkdir($logDir, 0755, true);
         }
@@ -24,7 +25,7 @@ if (!function_exists('sendSemaphoreSMS')) {
         
         // Fallback for .env parsing
         if (!$apiKey) {
-             $envPath = __DIR__ . '/../.env';
+             $envPath = $projectRoot . '/.env';
              if (file_exists($envPath)) {
                  $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
                  foreach ($lines as $line) {

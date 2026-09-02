@@ -1,0 +1,17 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Repository-only directories are never web-accessible.
+    RewriteRule ^(?:apps|packages|runtime|database|docs|tools)(?:/|$) - [F,L,NC]
+    RewriteRule ^(?:\.env|\.git|\.vscode)(?:/|$) - [F,L,NC]
+
+    # Keep the existing public URLs while the actual web app lives in apps/web.
+    RewriteRule ^$ apps/web/index.php [END]
+    RewriteRule ^(.+)$ apps/web/$1 [END]
+</IfModule>
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
