@@ -1,0 +1,234 @@
+[2025-11-22 22:14:47] [INFO] User 97 placing order (payment later)
+2025-11-22 22:15:20 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 124 (ORD-20251122-753805) | Method: xendit | Amount: 1.06 | User: 97
+2025-11-22 23:44:41 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 119 (ORD-20251122-AB0FFC) | Method: paypal | Amount: 17.14 | User: 97
+2025-11-22 23:44:41 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 119 | Customer: 43 | User: 97
+[2025-11-22 23:45:14] [INFO] User 97 placing order (payment later)
+2025-11-22 23:45:37 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 125 (ORD-20251122-A7A8BC) | Method: paypal | Amount: 16.08 | User: 97
+2025-11-22 23:45:38 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 125 | Customer: 43 | User: 97
+2025-11-22 23:49:00 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 125 | Customer: 43 | User: 97
+[2025-11-24 17:00:52] [INFO] User 97 placing order (payment later)
+2025-11-24 17:04:40 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 126 (ORD-20251124-401A80) | Method: xendit | Amount: 1.06 | User: 97
+[2025-11-25 08:01:13] [INFO] User 119 placing order (payment later)
+2025-11-25 08:05:24 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 115 (ORD-20251125-956B78) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-25 08:32:34] [INFO] User 119 placing order (payment later)
+2025-11-25 08:33:01 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 116 (ORD-20251125-2B9065) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-26 10:43:29] [INFO] User 119 placing order (payment later)
+2025-11-26 10:44:02 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 127 (ORD-20251126-152007) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-26 11:05:39] [INFO] User 119 placing order (payment later)
+2025-11-26 11:06:08 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 128 (ORD-20251126-3D6F6D) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-26 12:47:54] [INFO] User 119 placing order (payment later)
+2025-11-26 12:48:27 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 129 (ORD-20251126-A651BC) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-26 13:25:45] [INFO] User 119 placing order (payment later)
+2025-11-26 13:26:34 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 130 (ORD-20251126-94DDA2) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-26 13:39:52] [INFO] User 119 placing order (payment later)
+2025-11-26 13:40:15 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 131 (ORD-20251126-8D941A) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-26 13:53:43] [INFO] User 119 placing order (payment later)
+2025-11-26 13:54:28 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 132 (ORD-20251126-767F59) | Method: xendit | Amount: 1.06 | User: 119
+[2025-11-26 16:51:41] [INFO] User 146 placing order (payment later)
+[2025-11-26 21:28:52] [INFO] User 146 placing order (payment later)
+2025-11-26 21:29:14 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 134 (ORD-20251126-49E281) | Method: xendit | Amount: 1.06 | User: 146
+[2025-11-27 15:24:47] [INFO] User 146 placing order (payment later)
+2025-11-27 16:01:23 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 135 (ORD-20251127-F8E2BD) | Method: xendit | Amount: 1.06 | User: 146
+2025-11-27 16:06:44 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 135 (ORD-20251127-F8E2BD) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-27 16:06:44 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 135 | Customer: 64 | User: 146
+2025-11-27 16:07:10 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 135 | Customer: 64 | User: 146
+2025-11-27 16:09:44 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 135 | Customer: 64 | User: 146
+2025-11-27 16:10:52 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 135 (ORD-20251127-F8E2BD) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-27 16:10:52 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 135 | Customer: 64 | User: 146
+2025-11-27 16:19:58 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 135 | Customer: 64 | User: 146
+[2025-11-27 18:09:58] [INFO] User 152 placing order (payment later)
+2025-11-27 18:10:31 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 136 (ORD-20251127-691470) | Method: xendit | Amount: 1.03 | User: 152
+2025-11-27 18:11:02 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 136 (ORD-20251127-691470) | Method: xendit | Amount: 1.03 | User: 152
+[2025-11-28 00:32:17] [INFO] User 146 placing order (payment later)
+2025-11-28 00:34:21 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 00:34:22 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 00:39:25 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 00:48:47 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 00:48:47 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 01:25:35 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 01:25:36 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 01:33:36 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 01:33:36 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 01:37:45 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 01:45:05 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 01:45:06 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 01:45:18 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 01:45:51 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 01:58:38 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: xendit | Amount: 1.03 | User: 146
+2025-11-28 01:58:44 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 01:58:44 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 02:02:47 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 02:02:47 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 02:02:58 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 02:02:58 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 05:55:28 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 05:55:29 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 05:55:42 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: xendit | Amount: 1.03 | User: 146
+2025-11-28 05:56:19 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 05:56:19 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 06:14:19 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 06:14:19 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 06:22:16 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 06:22:16 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 06:28:11 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 06:28:12 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+2025-11-28 06:29:01 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 137 (ORD-20251128-1627D8) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 06:29:01 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 137 | Customer: 64 | User: 146
+[2025-11-28 06:38:34] [INFO] User 146 placing order (payment later)
+2025-11-28 06:40:04 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 138 (ORD-20251128-A92AA6) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 06:40:04 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 138 | Customer: 64 | User: 146
+2025-11-28 06:45:25 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 138 (ORD-20251128-A92AA6) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 06:45:26 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 138 | Customer: 64 | User: 146
+2025-11-28 06:49:37 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 138 (ORD-20251128-A92AA6) | Method: xendit | Amount: 1.03 | User: 146
+2025-11-28 06:50:05 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 138 (ORD-20251128-A92AA6) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 06:50:06 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 138 | Customer: 64 | User: 146
+2025-11-28 07:18:22 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 138 (ORD-20251128-A92AA6) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 07:18:22 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 138 | Customer: 64 | User: 146
+[2025-11-28 10:00:45] [INFO] User 146 placing order (payment later)
+2025-11-28 10:01:16 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 139 (ORD-20251128-DC5D22) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 10:01:16 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 139 | Customer: 64 | User: 146
+2025-11-28 10:02:21 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 139 (ORD-20251128-DC5D22) | Method: xendit | Amount: 1.03 | User: 146
+2025-11-28 10:02:28 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 139 (ORD-20251128-DC5D22) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 10:02:28 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 139 | Customer: 64 | User: 146
+[2025-11-28 10:21:46] [INFO] User 146 placing order (payment later)
+[2025-11-28 10:30:02] [INFO] User 146 placing order (payment later)
+2025-11-28 10:30:27 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 141 (ORD-20251128-ABC8B8) | Method: xendit | Amount: 1.03 | User: 146
+[2025-11-28 10:32:10] [INFO] User 146 placing order (payment later)
+2025-11-28 10:32:15 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 140 (ORD-20251128-A07939) | Method: paypal | Amount: 16.04 | User: 146
+2025-11-28 10:32:15 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 140 | Customer: 64 | User: 146
+[2025-11-28 13:13:57] [INFO] User 119 placing order (payment later)
+2025-11-28 13:14:20 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 143 (ORD-20251128-5B3BF9) | Method: xendit | Amount: 1.03 | User: 119
+[2025-11-28 13:15:34] [INFO] User 119 placing order (payment later)
+2025-11-28 13:15:49 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 144 (ORD-20251128-64C8B5) | Method: paypal | Amount: 16.04 | User: 119
+2025-11-28 13:15:50 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 144 | Customer: 49 | User: 119
+[2025-11-28 15:30:57] [INFO] User 175 placing order (payment later)
+2025-11-28 15:34:43 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 145 (ORD-20251128-16E70F) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-04 10:18:03] [INFO] User 119 placing order (payment later)
+2025-12-04 10:19:07 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 146 (ORD-20251204-B431ED) | Method: xendit | Amount: 1.03 | User: 119
+[2025-12-04 11:45:01] [INFO] User 119 placing order (payment later)
+2025-12-04 11:46:32 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 147 (ORD-20251204-DD5A58) | Method: xendit | Amount: 1.03 | User: 119
+[2025-12-04 12:14:13] [INFO] User 119 placing order (payment later)
+2025-12-04 12:20:33 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 148 (ORD-20251204-5D9815) | Method: xendit | Amount: 1.03 | User: 119
+[2025-12-06 19:40:30] [INFO] User 175 placing order (payment later)
+2025-12-06 19:41:27 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 149 (ORD-20251206-EA4A87) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-06 19:41:27 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 149 | Customer: 85 | User: 175
+[2025-12-07 20:06:46] [INFO] User 175 placing order (payment later)
+2025-12-07 20:09:20 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 150 (ORD-20251207-642C47) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-07 20:09:20 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 150 | Customer: 85 | User: 175
+2025-12-07 20:12:24 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 150 (ORD-20251207-642C47) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-07 22:52:13] [INFO] User 175 placing order (payment later)
+[2025-12-08 16:23:45] [INFO] User 175 placing order (payment later)
+[2025-12-08 16:26:29] [INFO] User 175 placing order (payment later)
+2025-12-08 16:27:06 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 153 (ORD-20251208-545DCF) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-08 18:44:44] [INFO] User 175 placing order (payment later)
+2025-12-08 18:46:37 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 154 (ORD-20251208-C4F4DA) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-08 19:08:34] [INFO] User 175 placing order (payment later)
+[2025-12-09 11:59:39] [INFO] User 175 placing order (payment later)
+[2025-12-09 12:00:38] [INFO] User 175 placing order (payment later)
+2025-12-09 12:01:22 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 157 (ORD-20251209-66A7DB) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-09 12:23:47] [INFO] User 175 placing order (payment later)
+2025-12-09 12:24:06 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 158 (ORD-20251209-373F27) | Method: xendit | Amount: 1.03 | User: 175
+2025-12-09 12:25:53 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 158 (ORD-20251209-373F27) | Method: xendit | Amount: 1.03 | User: 175
+2025-12-09 12:39:07 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 158 (ORD-20251209-373F27) | Method: xendit | Amount: 1.03 | User: 175
+2025-12-09 12:41:54 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 158 (ORD-20251209-373F27) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-10 09:58:23] [INFO] User 175 placing order (payment later)
+[2025-12-10 20:51:35] [INFO] User 175 placing order (payment later)
+2025-12-10 21:26:11 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 160 (ORD-20251210-74A7D2) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-10 21:26:11 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 160 | Customer: 85 | User: 175
+[2025-12-10 22:02:09] [INFO] User 175 placing order (payment later)
+2025-12-10 22:02:38 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 161 (ORD-20251210-1AA152) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-10 22:02:38 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 161 | Customer: 85 | User: 175
+[2025-12-10 23:38:29] [INFO] User 175 placing order (payment later)
+[2025-12-10 23:47:53] [INFO] User 175 placing order (payment later)
+[2025-12-11 00:36:14] [INFO] User 175 placing order (payment later)
+[2025-12-11 00:52:47] [INFO] User 175 placing order (payment later)
+[2025-12-11 01:01:40] [INFO] User 175 placing order (payment later)
+[2025-12-11 01:04:10] [INFO] User 175 placing order (payment later)
+2025-12-11 01:04:39 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 167 (ORD-20251211-A5F111) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-11 01:04:39 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 167 | Customer: 85 | User: 175
+[2025-12-11 01:09:23] [INFO] User 175 placing order (payment later)
+[2025-12-11 06:58:02] [INFO] User 119 placing order (payment later)
+2025-12-11 06:58:30 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 169 (ORD-20251211-A6FF29) | Method: xendit | Amount: 1.03 | User: 119
+[2025-12-11 07:30:08] [INFO] User 175 placing order (payment later)
+[2025-12-11 07:30:58] [INFO] User 175 placing order (payment later)
+2025-12-11 07:31:22 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 171 (ORD-20251211-2147DD) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-11 07:31:22 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 171 | Customer: 85 | User: 175
+[2025-12-11 07:35:18] [INFO] User 175 placing order (payment later)
+[2025-12-11 07:36:33] [INFO] User 175 placing order (payment later)
+[2025-12-11 07:40:12] [INFO] User 175 placing order (payment later)
+[2025-12-11 07:52:24] [INFO] User 175 placing order (payment later)
+[2025-12-11 07:54:16] [INFO] User 119 placing order (payment later)
+[2025-12-11 07:54:34] [INFO] User 175 placing order (payment later)
+2025-12-11 07:54:57 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 176 (ORD-20251211-8301DD) | Method: xendit | Amount: 1.03 | User: 119
+[2025-12-11 08:39:48] [INFO] User 119 placing order (payment later)
+2025-12-11 08:40:37 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 178 (ORD-20251211-48EC82) | Method: xendit | Amount: 1.03 | User: 119
+[2025-12-11 10:03:55] [INFO] User 175 placing order (payment later)
+2025-12-11 10:04:12 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 179 (ORD-20251211-B589B1) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-11 10:04:12 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 179 | Customer: 85 | User: 175
+[2025-12-11 10:24:23] [INFO] User 175 placing order (payment later)
+[2025-12-11 10:24:30] [INFO] User 119 placing order (payment later)
+2025-12-11 10:24:56 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 180 (ORD-20251211-7274A4) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-11 10:24:56 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 180 | Customer: 85 | User: 175
+[2025-12-11 10:25:45] [INFO] User 119 placing order (payment later)
+2025-12-11 10:26:00 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 182 (ORD-20251211-9D353C) | Method: xendit | Amount: 1.03 | User: 119
+[2025-12-11 10:29:01] [INFO] User 175 placing order (payment later)
+[2025-12-11 10:37:32] [INFO] User 175 placing order (payment later)
+2025-12-11 10:37:51 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 184 (ORD-20251211-C7858A) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-11 10:56:13] [INFO] User 175 placing order (payment later)
+2025-12-11 10:56:37 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 185 (ORD-20251211-D2388B) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-11 10:56:37 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 185 | Customer: 85 | User: 175
+[2025-12-11 11:18:32] [INFO] User 175 placing order (payment later)
+[2025-12-11 11:19:24] [INFO] User 175 placing order (payment later)
+[2025-12-11 11:29:43] [INFO] User 175 placing order (payment later)
+[2025-12-11 14:46:29] [INFO] User 175 placing order (payment later)
+[2025-12-11 14:48:23] [INFO] User 175 placing order (payment later)
+2025-12-11 14:48:44 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 190 (ORD-20251211-7CB264) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-11 14:48:45 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 190 | Customer: 85 | User: 175
+[2025-12-11 15:00:07] [INFO] User 175 placing order (payment later)
+[2025-12-13 20:12:08] [INFO] User 119 placing order (payment later)
+[2025-12-14 10:12:51] [INFO] User 175 placing order (payment later)
+2025-12-14 10:13:15 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 193 (ORD-20251214-3F04DF) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-14 10:13:15 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 193 | Customer: 85 | User: 175
+[2025-12-14 10:43:17] [INFO] User 175 placing order (payment later)
+2025-12-14 10:53:06 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 194 (ORD-20251214-51E2AB) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-14 10:53:07 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 194 | Customer: 85 | User: 175
+[2025-12-14 11:05:33] [INFO] User 175 placing order (payment later)
+2025-12-14 11:06:21 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 195 (ORD-20251214-D1A429) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-14 11:06:21 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 195 | Customer: 85 | User: 175
+[2025-12-14 11:12:15] [INFO] User 175 placing order (payment later)
+2025-12-14 11:12:31 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 196 (ORD-20251214-F585BD) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-14 11:12:31 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 196 | Customer: 85 | User: 175
+2025-12-14 11:12:40 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 196 | Customer: 85 | User: 175
+2025-12-14 13:30:35 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 196 (ORD-20251214-F585BD) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-14 16:16:15] [INFO] User 175 placing order (payment later)
+2025-12-14 16:18:47 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 197 (ORD-20251214-FAC2B0) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-14 17:57:37] [INFO] User 146 placing order (payment later)
+[2025-12-14 17:58:13] [INFO] User 175 placing order (payment later)
+2025-12-14 17:58:42 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 199 (ORD-20251214-57FAED) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-14 18:02:22] [INFO] User 175 placing order (payment later)
+2025-12-14 18:03:17 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 200 (ORD-20251214-E4C8E2) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-16 09:11:05] [INFO] User 175 placing order (payment later)
+2025-12-16 09:11:31 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 201 (ORD-20251216-90FB1A) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-16 09:11:31 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 201 | Customer: 85 | User: 175
+[2025-12-16 10:28:17] [INFO] User 175 placing order (payment later)
+2025-12-16 10:28:46 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 202 (ORD-20251216-104920) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-16 10:28:46 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 202 | Customer: 85 | User: 175
+[2025-12-16 10:48:43] [INFO] User 175 placing order (payment later)
+2025-12-16 10:48:58 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 203 (ORD-20251216-B729BD) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-16 11:57:07] [INFO] User 175 placing order (payment later)
+2025-12-16 11:57:30 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 204 (ORD-20251216-3DD39C) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-16 13:49:01] [INFO] User 175 placing order (payment later)
+2025-12-16 13:49:16 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 205 (ORD-20251216-D05239) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-16 13:57:58] [INFO] User 175 placing order (payment later)
+2025-12-16 13:58:22 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 206 (ORD-20251216-65E83B) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-17 06:26:13] [INFO] User 175 placing order (payment later)
+2025-12-17 06:26:33 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 207 (ORD-20251217-5E5E89) | Method: paypal | Amount: 16.04 | User: 175
+2025-12-17 06:26:33 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 207 | Customer: 85 | User: 175
+2025-12-17 06:26:48 | CUSTOMER | PAYPAL_CHECKOUT_PAGE | Order: 207 | Customer: 85 | User: 175
+[2025-12-17 07:49:27] [INFO] User 175 placing order (payment later)
+[2025-12-17 08:03:21] [INFO] User 175 placing order (payment later)
+2025-12-17 08:04:08 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 209 (ORD-20251217-958FDA) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-17 08:40:05] [INFO] User 175 placing order (payment later)
+2025-12-17 08:41:10 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 210 (ORD-20251217-514401) | Method: xendit | Amount: 1.03 | User: 175
+[2025-12-17 08:47:45] [INFO] User 175 placing order (payment later)
+2025-12-17 08:48:04 | CUSTOMER | SELECT_PAYMENT_METHOD | Order: 211 (ORD-20251217-1B98E9) | Method: xendit | Amount: 1.03 | User: 175

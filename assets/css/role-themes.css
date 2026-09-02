@@ -1,0 +1,635 @@
+/**
+ * Role-Based Theme System - Fingerling Online Ordering Platform
+ * Unique color schemes and visual identities for each role
+ * Admin: Professional dark/blue theme
+ * Supplier: Green/teal business theme  
+ * Customer: Orange/light shopping theme
+ */
+
+/* ===== ADMIN THEME VARIABLES ===== */
+:root[data-role="admin"] {
+    /* Primary Colors */
+    --role-primary: #1e40af;
+    --role-primary-hover: #1d4ed8;
+    --role-primary-light: #dbeafe;
+    --role-primary-dark: #1e3a8a;
+    
+    /* Secondary Colors */
+    --role-secondary: #374151;
+    --role-secondary-hover: #4b5563;
+    --role-secondary-light: #f3f4f6;
+    
+    /* Accent Colors */
+    --role-accent: #7c3aed;
+    --role-accent-hover: #8b5cf6;
+    --role-accent-light: #ede9fe;
+    
+    /* Sidebar Colors */
+    --role-sidebar-bg: #1e293b;
+    --role-sidebar-hover: #334155;
+    --role-sidebar-active: #0f172a;
+    --role-sidebar-text: #e2e8f0;
+    --role-sidebar-text-active: #ffffff;
+    
+    /* Navbar Colors */
+    --role-navbar-bg: #1e40af;
+    --role-navbar-text: #ffffff;
+    --role-navbar-hover: rgba(255, 255, 255, 0.1);
+    
+    /* Status Colors */
+    --role-success: #059669;
+    --role-warning: #d97706;
+    --role-danger: #dc2626;
+    --role-info: #0891b2;
+}
+
+/* ===== SUPPLIER THEME VARIABLES ===== */
+:root[data-role="supplier"] {
+    /* Primary Colors */
+    --role-primary: #059669;
+    --role-primary-hover: #047857;
+    --role-primary-light: #d1fae5;
+    --role-primary-dark: #065f46;
+    
+    /* Secondary Colors */
+    --role-secondary: #0d9488;
+    --role-secondary-hover: #0f766e;
+    --role-secondary-light: #ccfbf1;
+    
+    /* Accent Colors */
+    --role-accent: #0891b2;
+    --role-accent-hover: #0e7490;
+    --role-accent-light: #cffafe;
+    
+    /* Sidebar Colors */
+    --role-sidebar-bg: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+    --role-sidebar-hover: rgba(255, 255, 255, 0.1);
+    --role-sidebar-active: rgba(255, 255, 255, 0.2);
+    --role-sidebar-text: #ffffff;
+    --role-sidebar-text-active: #ffffff;
+    
+    /* Navbar Colors */
+    --role-navbar-bg: #059669;
+    --role-navbar-text: #ffffff;
+    --role-navbar-hover: rgba(255, 255, 255, 0.1);
+    
+    /* Status Colors */
+    --role-success: #10b981;
+    --role-warning: #f59e0b;
+    --role-danger: #ef4444;
+    --role-info: #06b6d4;
+}
+
+/* ===== CUSTOMER THEME VARIABLES ===== */
+:root[data-role="customer"] {
+    /* Primary Colors */
+    --role-primary: #ea580c;
+    --role-primary-hover: #dc2626;
+    --role-primary-light: #fed7aa;
+    --role-primary-dark: #c2410c;
+    
+    /* Secondary Colors */
+    --role-secondary: #f97316;
+    --role-secondary-hover: #ea580c;
+    --role-secondary-light: #ffedd5;
+    
+    /* Accent Colors */
+    --role-accent: #0891b2;
+    --role-accent-hover: #0e7490;
+    --role-accent-light: #cffafe;
+    
+    /* Sidebar Colors */
+    --role-sidebar-bg: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    --role-sidebar-hover: rgba(255, 255, 255, 0.1);
+    --role-sidebar-active: rgba(255, 255, 255, 0.2);
+    --role-sidebar-text: #ffffff;
+    --role-sidebar-text-active: #ffffff;
+    
+    /* Navbar Colors */
+    --role-navbar-bg: #ea580c;
+    --role-navbar-text: #ffffff;
+    --role-navbar-hover: rgba(255, 255, 255, 0.1);
+    
+    /* Status Colors */
+    --role-success: #22c55e;
+    --role-warning: #eab308;
+    --role-danger: #ef4444;
+    --role-info: #3b82f6;
+}
+
+/* ===== ROLE-BASED SIDEBAR STYLES ===== */
+
+/* Admin Sidebar */
+.role-sidebar.admin-sidebar {
+    background: var(--role-sidebar-bg) !important;
+    border-right: 1px solid #334155;
+}
+
+.role-sidebar.admin-sidebar .nav-link {
+    color: var(--role-sidebar-text) !important;
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.role-sidebar.admin-sidebar .nav-link:hover {
+    background: var(--role-sidebar-hover) !important;
+    color: var(--role-sidebar-text-active) !important;
+    border-color: #475569;
+}
+
+.role-sidebar.admin-sidebar .nav-link.active {
+    background: var(--role-primary) !important;
+    color: var(--role-sidebar-text-active) !important;
+    border-color: var(--role-primary-hover);
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+}
+
+/* Supplier Sidebar */
+.role-sidebar.supplier-sidebar {
+    background: var(--role-sidebar-bg) !important;
+}
+
+.role-sidebar.supplier-sidebar .nav-link {
+    color: var(--role-sidebar-text) !important;
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.role-sidebar.supplier-sidebar .nav-link:hover {
+    background: var(--role-sidebar-hover) !important;
+    color: var(--role-sidebar-text-active) !important;
+    transform: translateX(4px);
+}
+
+.role-sidebar.supplier-sidebar .nav-link.active {
+    background: var(--role-sidebar-active) !important;
+    color: var(--role-sidebar-text-active) !important;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+    transform: translateX(4px);
+}
+
+/* Customer Sidebar */
+.role-sidebar.customer-sidebar {
+    background: var(--role-sidebar-bg) !important;
+}
+
+.role-sidebar.customer-sidebar .nav-link {
+    color: var(--role-sidebar-text) !important;
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.role-sidebar.customer-sidebar .nav-link:hover {
+    background: var(--role-sidebar-hover) !important;
+    color: var(--role-sidebar-text-active) !important;
+    transform: translateX(4px);
+}
+
+.role-sidebar.customer-sidebar .nav-link.active {
+    background: var(--role-sidebar-active) !important;
+    color: var(--role-sidebar-text-active) !important;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+    transform: translateX(4px);
+}
+
+/* ===== ROLE-BASED NAVBAR STYLES ===== */
+
+/* Admin Navbar */
+.role-navbar.admin-navbar {
+    background: var(--role-navbar-bg) !important;
+    border-bottom: 1px solid var(--role-primary-dark);
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.2);
+}
+
+.role-navbar.admin-navbar .navbar-brand,
+.role-navbar.admin-navbar .nav-link,
+.role-navbar.admin-navbar .navbar-text {
+    color: var(--role-navbar-text) !important;
+}
+
+.role-navbar.admin-navbar .nav-link:hover,
+.role-navbar.admin-navbar .dropdown-toggle:hover {
+    background: var(--role-navbar-hover) !important;
+    border-radius: 6px;
+}
+
+/* Supplier Navbar */
+.role-navbar.supplier-navbar {
+    background: var(--role-navbar-bg) !important;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+.role-navbar.supplier-navbar .navbar-brand,
+.role-navbar.supplier-navbar .nav-link,
+.role-navbar.supplier-navbar .navbar-text {
+    color: var(--role-navbar-text) !important;
+}
+
+.role-navbar.supplier-navbar .nav-link:hover,
+.role-navbar.supplier-navbar .dropdown-toggle:hover {
+    background: var(--role-navbar-hover) !important;
+    border-radius: 6px;
+}
+
+/* Customer Navbar */
+.role-navbar.customer-navbar {
+    background: var(--role-navbar-bg) !important;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.2);
+}
+
+.role-navbar.customer-navbar .navbar-brand,
+.role-navbar.customer-navbar .nav-link,
+.role-navbar.customer-navbar .navbar-text {
+    color: var(--role-navbar-text) !important;
+}
+
+.role-navbar.customer-navbar .nav-link:hover,
+.role-navbar.customer-navbar .dropdown-toggle:hover {
+    background: var(--role-navbar-hover) !important;
+    border-radius: 6px;
+}
+
+/* ===== ROLE-BASED BUTTON STYLES ===== */
+
+/* Admin Buttons */
+.role-btn.admin-btn-primary {
+    background: var(--role-primary) !important;
+    border-color: var(--role-primary) !important;
+    color: white !important;
+}
+
+.role-btn.admin-btn-primary:hover {
+    background: var(--role-primary-hover) !important;
+    border-color: var(--role-primary-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+.role-btn.admin-btn-secondary {
+    background: var(--role-secondary) !important;
+    border-color: var(--role-secondary) !important;
+    color: white !important;
+}
+
+.role-btn.admin-btn-secondary:hover {
+    background: var(--role-secondary-hover) !important;
+    border-color: var(--role-secondary-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
+}
+
+/* Supplier Buttons */
+.role-btn.supplier-btn-primary {
+    background: var(--role-primary) !important;
+    border-color: var(--role-primary) !important;
+    color: white !important;
+}
+
+.role-btn.supplier-btn-primary:hover {
+    background: var(--role-primary-hover) !important;
+    border-color: var(--role-primary-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.role-btn.supplier-btn-secondary {
+    background: var(--role-secondary) !important;
+    border-color: var(--role-secondary) !important;
+    color: white !important;
+}
+
+.role-btn.supplier-btn-secondary:hover {
+    background: var(--role-secondary-hover) !important;
+    border-color: var(--role-secondary-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+/* Customer Buttons */
+.role-btn.customer-btn-primary {
+    background: var(--role-primary) !important;
+    border-color: var(--role-primary) !important;
+    color: white !important;
+}
+
+.role-btn.customer-btn-primary:hover {
+    background: var(--role-primary-hover) !important;
+    border-color: var(--role-primary-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+}
+
+.role-btn.customer-btn-secondary {
+    background: var(--role-secondary) !important;
+    border-color: var(--role-secondary) !important;
+    color: white !important;
+}
+
+.role-btn.customer-btn-secondary:hover {
+    background: var(--role-secondary-hover) !important;
+    border-color: var(--role-secondary-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+/* ===== ROLE-BASED CARD STYLES ===== */
+
+/* Admin Cards */
+.role-card.admin-card {
+    border-left: 4px solid var(--role-primary);
+    background: var(--bg-primary);
+    transition: all 0.3s ease;
+}
+
+.role-card.admin-card:hover {
+    border-left-color: var(--role-primary-hover);
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.15);
+    transform: translateY(-2px);
+}
+
+.role-card.admin-card .card-header {
+    background: var(--role-primary-light);
+    border-bottom: 1px solid var(--role-primary);
+    color: var(--role-primary-dark);
+}
+
+/* Supplier Cards */
+.role-card.supplier-card {
+    border-left: 4px solid var(--role-primary);
+    background: var(--bg-primary);
+    transition: all 0.3s ease;
+}
+
+.role-card.supplier-card:hover {
+    border-left-color: var(--role-primary-hover);
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.15);
+    transform: translateY(-2px);
+}
+
+.role-card.supplier-card .card-header {
+    background: var(--role-primary-light);
+    border-bottom: 1px solid var(--role-primary);
+    color: var(--role-primary-dark);
+}
+
+/* Customer Cards */
+.role-card.customer-card {
+    border-left: 4px solid var(--role-primary);
+    background: var(--bg-primary);
+    transition: all 0.3s ease;
+}
+
+.role-card.customer-card:hover {
+    border-left-color: var(--role-primary-hover);
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.15);
+    transform: translateY(-2px);
+}
+
+.role-card.customer-card .card-header {
+    background: var(--role-primary-light);
+    border-bottom: 1px solid var(--role-primary);
+    color: var(--role-primary-dark);
+}
+
+/* ===== ROLE-BASED STAT CARDS ===== */
+
+/* Admin Stat Cards */
+.role-stat-card.admin-stat-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.role-stat-card.admin-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--role-primary);
+    transition: width 0.3s ease;
+}
+
+.role-stat-card.admin-stat-card:hover::before {
+    width: 6px;
+}
+
+.role-stat-card.admin-stat-card:hover {
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.15);
+    transform: translateY(-2px);
+}
+
+.role-stat-card.admin-stat-card .stat-icon {
+    background: var(--role-primary);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.role-stat-card.admin-stat-card .stat-value {
+    color: var(--role-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Supplier Stat Cards */
+.role-stat-card.supplier-stat-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.role-stat-card.supplier-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--role-primary);
+    transition: width 0.3s ease;
+}
+
+.role-stat-card.supplier-stat-card:hover::before {
+    width: 6px;
+}
+
+.role-stat-card.supplier-stat-card:hover {
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.15);
+    transform: translateY(-2px);
+}
+
+.role-stat-card.supplier-stat-card .stat-icon {
+    background: var(--role-primary);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.role-stat-card.supplier-stat-card .stat-value {
+    color: var(--role-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Customer Stat Cards */
+.role-stat-card.customer-stat-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.role-stat-card.customer-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--role-primary);
+    transition: width 0.3s ease;
+}
+
+.role-stat-card.customer-stat-card:hover::before {
+    width: 6px;
+}
+
+.role-stat-card.customer-stat-card:hover {
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.15);
+    transform: translateY(-2px);
+}
+
+.role-stat-card.customer-stat-card .stat-icon {
+    background: var(--role-primary);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.role-stat-card.customer-stat-card .stat-value {
+    color: var(--role-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* ===== ROLE-BASED MAIN CONTENT AREAS ===== */
+
+/* Admin Main Content */
+.role-main-content.admin-main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    background: var(--bg-secondary);
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+/* Supplier Main Content */
+.role-main-content.supplier-main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    background: var(--bg-secondary);
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+/* Customer Main Content */
+.role-main-content.customer-main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    background: var(--bg-secondary);
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .role-main-content.admin-main-content,
+    .role-main-content.supplier-main-content,
+    .role-main-content.customer-main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .role-sidebar.admin-sidebar,
+    .role-sidebar.supplier-sidebar,
+    .role-sidebar.customer-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1050;
+        width: 280px;
+    }
+
+    .role-sidebar.admin-sidebar.show,
+    .role-sidebar.supplier-sidebar.show,
+    .role-sidebar.customer-sidebar.show {
+        transform: translateX(0);
+    }
+
+    .role-stat-card.admin-stat-card,
+    .role-stat-card.supplier-stat-card,
+    .role-stat-card.customer-stat-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+[data-theme="dark"] .role-card.admin-card,
+[data-theme="dark"] .role-card.supplier-card,
+[data-theme="dark"] .role-card.customer-card {
+    background: var(--bg-primary);
+    border-color: var(--border-primary);
+}
+
+[data-theme="dark"] .role-stat-card.admin-stat-card,
+[data-theme="dark"] .role-stat-card.supplier-stat-card,
+[data-theme="dark"] .role-stat-card.customer-stat-card {
+    background: var(--bg-primary);
+    border-color: var(--border-primary);
+}
+
+[data-theme="dark"] .role-main-content.admin-main-content,
+[data-theme="dark"] .role-main-content.supplier-main-content,
+[data-theme="dark"] .role-main-content.customer-main-content {
+    background: var(--bg-secondary);
+}

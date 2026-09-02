@@ -1,0 +1,11 @@
+/* CSS to override sidebar styles when sidebar is removed */
+
+.role-main-content.customer-main-content.no-sidebar {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* Make sure the dashboard header doesn't have the sidebar toggle button */
+.modern-dashboard-header.no-sidebar-toggle .modern-sidebar-toggle {
+    display: none !important;
+}
