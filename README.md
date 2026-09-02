@@ -73,7 +73,7 @@ Customer reviews the completed order
 2. Copy `.env.example` to `.env`.
 3. Set the database and optional service credentials in `.env` only.
 4. Import the required database schema/migrations for your environment.
-5. Configure your web server to serve this project, then open the application in a browser.
+5. Configure your web server to serve this project root, then open the application in a browser. The root router serves the PHP application from `apps/web/` while preserving its existing URLs.
 
 ## Configuration and security
 

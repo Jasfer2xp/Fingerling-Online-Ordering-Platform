@@ -5,6 +5,7 @@
 
 # Editor and PHP runtime files
 .vscode/
+/archive/
 /runtime/logs/*.log
 /runtime/sessions/*
 
