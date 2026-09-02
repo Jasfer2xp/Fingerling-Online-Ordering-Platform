@@ -1,0 +1,210 @@
+2025-12-14T13:38:46+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T13:38:46+08:00 | 196 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260821246,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T13:39:26+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T13:39:26+08:00 | 196 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260821261,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T13:39:26+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T13:39:26+08:00 | 196 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260821262,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:04:58+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T16:04:58+08:00 | 195 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260825829,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:19:58+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T16:19:58+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260826200,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:20:28+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T16:20:29+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260826215,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:20:29+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T16:20:29+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260826216,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:21:34+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T16:21:34+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260826247,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:30:33+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T16:30:33+08:00 | 9999 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260826444,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:33:19+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T16:33:19+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260826511,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:36:50+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T16:36:50+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260826580,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:44:19+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T16:44:20+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260826704,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T16:46:57+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T16:46:58+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260826755,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:01:04+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T17:01:04+08:00 | 196 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260827130,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:02:10+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T17:02:10+08:00 | 196 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260827152,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:03:43+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T17:03:44+08:00 | 196 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260827175,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:09:38+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T17:09:38+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260827292,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:10:02+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T17:10:03+08:00 | 196 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260827299,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:10:17+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T17:10:17+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260827306,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:10:17+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T17:10:18+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260827307,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:23:51+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T17:23:52+08:00 | 196 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260827614,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:23:52+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T17:23:52+08:00 | 196 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260827615,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:35:09+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T17:35:09+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828001,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:35:24+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T17:35:24+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828007,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T17:35:43+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T17:35:43+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828014,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:02:50+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T18:02:50+08:00 | 199 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828909,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:04:39+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T18:04:39+08:00 | 196 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828941,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:04:59+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T18:04:59+08:00 | 199 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260828950,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:04:59+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T18:04:59+08:00 | 199 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828951,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:06:24+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T18:06:24+08:00 | 199 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828983,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:06:40+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T18:06:40+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828989,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:06:54+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T18:06:54+08:00 | 200 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260828993,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:06:54+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T18:06:54+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260828994,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T18:56:51+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T18:56:51+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260830243,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:04:51+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:04:51+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260830682,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:21:13+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:21:13+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831315,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:24:30+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:24:30+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831377,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:24:39+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-14T19:24:39+08:00 | 200 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260831380,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:24:39+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:24:39+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831381,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:43:19+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:43:19+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831839,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:43:51+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:43:51+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831847,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:46:59+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:46:59+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831906,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:47:18+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:47:18+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831914,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:49:25+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:49:25+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260831957,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T19:52:36+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T19:52:36+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260832009,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T20:07:40+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T20:07:40+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260832327,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-14T20:10:11+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-14T20:10:11+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260832390,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:30:32+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T07:30:32+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260849698,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:34:58+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T07:34:58+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260849793,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:35:09+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-15T07:35:10+08:00 | 200 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260849798,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:35:10+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T07:35:10+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260849799,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:48:01+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T07:48:01+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260850120,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:48:09+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-15T07:48:09+08:00 | 200 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260850122,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:48:09+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T07:48:09+08:00 | 200 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260850123,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:54:56+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T07:54:57+08:00 | 199 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260850776,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:55:04+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-15T07:55:04+08:00 | 199 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260850777,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T07:55:04+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T07:55:04+08:00 | 199 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260850778,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T08:00:54+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T08:00:54+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260852109,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T08:01:01+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-15T08:01:01+08:00 | 197 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260852192,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-15T08:01:01+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-15T08:01:01+08:00 | 197 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260852213,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T09:12:05+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T09:12:05+08:00 | 201 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260928632,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T09:12:18+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T09:12:18+08:00 | 193 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260928643,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T09:12:40+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T09:12:40+08:00 | 201 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260928660,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T09:12:40+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T09:12:40+08:00 | 201 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260928661,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T09:12:57+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T09:12:57+08:00 | 201 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260928668,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T09:23:59+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T09:24:00+08:00 | 196 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260929283,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:29:40+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T10:29:40+08:00 | 202 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260933481,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:30:02+08:00 | Attempting to send to 639307836628 | Key: e9cf***
+2025-12-16T10:30:02+08:00 | 202 | 639307836628 | HTTP 200 | Err:  | Resp: [{"message_id":260933507,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:30:02+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T10:30:02+08:00 | 202 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260933508,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:36:54+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T10:36:55+08:00 | 196 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260934146,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:36:55+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T10:36:55+08:00 | 196 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260934147,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:47:50+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T10:47:51+08:00 | 196 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260934726,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:50:48+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T10:50:48+08:00 | 203 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260934895,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:51:00+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T10:51:00+08:00 | 203 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260934904,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T10:51:00+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T10:51:00+08:00 | 203 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260934905,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T11:02:18+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T11:02:20+08:00 | 193 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260936150,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T11:02:20+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T11:02:20+08:00 | 193 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260936152,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T11:03:58+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T11:03:58+08:00 | 193 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260936219,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T11:55:55+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T11:55:55+08:00 | 203 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260940474,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T11:59:00+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T11:59:01+08:00 | 204 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260940734,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T11:59:10+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T11:59:11+08:00 | 204 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260940763,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T11:59:11+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T11:59:11+08:00 | 204 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260940764,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T12:06:31+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T12:06:31+08:00 | 204 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260941484,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T13:51:48+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T13:51:48+08:00 | 205 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260947134,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T13:52:02+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T13:52:02+08:00 | 205 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260947142,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T13:52:02+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T13:52:02+08:00 | 205 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260947143,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T13:53:38+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T13:53:39+08:00 | 205 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260947219,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T13:59:32+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T13:59:32+08:00 | 206 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260947514,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T13:59:49+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-16T13:59:49+08:00 | 206 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260947528,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T13:59:49+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T13:59:49+08:00 | 206 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260947529,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-16T14:23:10+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-16T14:23:11+08:00 | 206 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260948597,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T06:24:44+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-17T06:24:44+08:00 | 203 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260979872,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T06:25:33+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T06:25:34+08:00 | 203 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260979885,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:06:46+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:06:46+08:00 | 209 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260984350,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:07:05+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-17T08:07:05+08:00 | 209 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260984366,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:07:05+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:07:05+08:00 | 209 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260984367,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:08:07+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:08:07+08:00 | 209 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260984451,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:42:39+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:42:40+08:00 | 210 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260986174,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:42:53+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-17T08:42:53+08:00 | 210 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260986177,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:42:53+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:42:54+08:00 | 210 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260986178,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:44:38+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:44:38+08:00 | 210 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260986236,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:49:05+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:49:05+08:00 | 211 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260986712,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:49:19+08:00 | Attempting to send to 639461075459 | Key: e9cf***
+2025-12-17T08:49:20+08:00 | 211 | 639461075459 | HTTP 200 | Err:  | Resp: [{"message_id":260986741,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T08:49:20+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T08:49:20+08:00 | 211 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260986742,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou
+2025-12-17T09:06:07+08:00 | Attempting to send to 639518348359 | Key: e9cf***
+2025-12-17T09:06:07+08:00 | 211 | 639518348359 | HTTP 200 | Err:  | Resp: [{"message_id":260989066,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"accou

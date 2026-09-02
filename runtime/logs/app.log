@@ -1,0 +1,145 @@
+2025-11-20 19:54:10 - SMS Send Attempt - Phone: 09461075459, HTTP: 200, Error: None
+2025-11-20 19:54:10 - SMS Sent Successfully - Phone: 09461075459, OTP: 725284
+2025-11-20 19:58:20 - SEMAPHORE_API_KEY FOUND - Length: 32 chars
+2025-11-20 19:58:20 - SSL Verification DISABLED (env: development)
+2025-11-20 19:58:20 - SMS Send Attempt - Phone: 09461075459, HTTP: 200, Error: None
+2025-11-20 19:58:20 - SMS Sent Successfully - Phone: 09461075459, OTP: 556429
+2025-11-20 19:59:18 - SEMAPHORE_API_KEY FOUND - Length: 32 chars
+2025-11-20 19:59:18 - SSL Verification DISABLED (env: development)
+2025-11-20 19:59:19 - SMS Send Attempt - Phone: 09461075459, HTTP: 200, Error: None
+2025-11-20 19:59:19 - Semaphore Response - HTTP: 200, Response: {"sendername":["The selected sendername is invalid."]}
+2025-11-20 19:59:19 - SMS Sent Successfully - Phone: 09461075459, OTP: 657861
+2025-11-20 20:03:50 - Semaphore Response - HTTP: 200, Response: [{"message_id":259273939,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: 862580 (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:03:48","updated_at":"2025-11-20 20:03:48"}]
+2025-11-20 20:03:50 - Semaphore API Error: Your Fingerling OTP: 862580 (Valid for 5 mins), Full Response: [{"message_id":259273939,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: 862580 (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:03:48","updated_at":"2025-11-20 20:03:48"}]
+2025-11-20 20:03:50 - SMS Send via sendSemaphoreSMS() - Phone: 09461075459, Result: Failed
+2025-11-20 20:03:50 - SMS Send Failed - Phone: 09461075459, Error: Failed to send SMS: Your Fingerling OTP: 862580 (Valid for 5 mins)
+2025-11-20 20:04:01 - Semaphore Response - HTTP: 200, Response: [{"message_id":259273947,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: 975580 (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:03:59","updated_at":"2025-11-20 20:03:59"}]
+2025-11-20 20:04:01 - Semaphore API Error: Your Fingerling OTP: 975580 (Valid for 5 mins), Full Response: [{"message_id":259273947,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: 975580 (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:03:59","updated_at":"2025-11-20 20:03:59"}]
+2025-11-20 20:04:01 - SMS Send via sendSemaphoreSMS() - Phone: 09461075459, Result: Failed
+2025-11-20 20:04:01 - SMS Send Failed - Phone: 09461075459, Error: Failed to send SMS: Your Fingerling OTP: 975580 (Valid for 5 mins)
+2025-11-20 20:05:15 - Semaphore Response - HTTP: 200, Response: [{"message_id":259273977,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"OTP message Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:05:13","updated_at":"2025-11-20 20:05:13"}]
+2025-11-20 20:05:15 - Semaphore API Error: OTP message Valid for 5 mins), Full Response: [{"message_id":259273977,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: ****** (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:05:13","updated_at":"2025-11-20 20:05:13"}]
+2025-11-20 20:05:15 - SMS Send via sendSemaphoreSMS() - Phone: 09461075459, Result: Failed
+2025-11-20 20:05:15 - SMS Send Failed - Phone: 09461075459, Error: Failed to send SMS. Please try again.
+2025-11-20 20:05:42 - Semaphore Response - HTTP: 200, Response: [{"message_id":259273986,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"OTP message Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:05:40","updated_at":"2025-11-20 20:05:40"}]
+2025-11-20 20:05:42 - Semaphore API Error: OTP message Valid for 5 mins), Full Response: [{"message_id":259273986,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: ****** (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:05:40","updated_at":"2025-11-20 20:05:40"}]
+2025-11-20 20:05:42 - SMS Send via sendSemaphoreSMS() - Phone: 09461075459, Result: Failed
+2025-11-20 20:05:42 - SMS Send Failed - Phone: 09461075459, Error: Failed to send SMS. Please try again.
+2025-11-20 20:06:06 - Semaphore Response - HTTP: 200, Response: [{"message_id":259273994,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"OTP message Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:06:04","updated_at":"2025-11-20 20:06:04"}]
+2025-11-20 20:06:06 - Semaphore API Error: OTP message Valid for 5 mins), Full Response: [{"message_id":259273994,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: ****** (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:06:04","updated_at":"2025-11-20 20:06:04"}]
+2025-11-20 20:06:06 - SMS Send via sendSemaphoreSMS() - Phone: 09461075459, Result: Failed
+2025-11-20 20:06:06 - SMS Send Failed - Phone: 09461075459, Error: Failed to send SMS. Please try again.
+2025-11-20 20:06:14 - Semaphore Response - HTTP: 200, Response: [{"message_id":259273997,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"OTP message Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:06:12","updated_at":"2025-11-20 20:06:12"}]
+2025-11-20 20:06:14 - Semaphore API Error: OTP message Valid for 5 mins), Full Response: [{"message_id":259273997,"user_id":64532,"user":"shinsakamoto89@gmail.com","account_id":64393,"account":"FINGERLINGS ONLINE ORDERING PLATFORM","recipient":"639461075459","message":"Your Fingerling OTP: ****** (Valid for 5 mins)","sender_name":"FINGERLINGS","network":"Smart","status":"Pending","type":"Single","source":"Api","created_at":"2025-11-20 20:06:12","updated_at":"2025-11-20 20:06:12"}]
+2025-11-20 20:06:14 - SMS Send via sendSemaphoreSMS() - Phone: 09461075459, Result: Failed
+2025-11-20 20:06:14 - SMS Send Failed - Phone: 09461075459, Error: Failed to send SMS. Please try again.
+2025-11-20 20:16:06 - Semaphore Response - HTTP: 200, Response Type: array
+  - Is Array: YES, Count: 1
+  - First element keys: message_id, user_id, user, account_id, account, recipient, message, sender_name, network, status, type, source, created_at, updated_at
+  - message_id found: 259274206
+2025-11-20 20:16:06 - SMS Send SUCCESS - message_id found
+2025-11-20 20:34:54 - SMS Send SUCCESS - message_id found, API Response Time: 426.9ms
+2025-11-20 20:34:54 - OTP Send Complete - Phone: 09461075459, Total Time: 428.05ms
+2025-11-20 20:35:12 - OTP Verify Attempt - Phone: 09461075459, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-20 20:35:12 - OTP Verify (Hashed) - password_verify result: TRUE
+2025-11-20 22:27:35 - SMS Send SUCCESS - message_id found, API Response Time: 641.47ms
+2025-11-20 22:27:35 - OTP Send Complete - Phone: 09627058707, Total Time: 643.26ms
+2025-11-20 22:28:04 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-20 22:28:04 - OTP Verify (Hashed) - password_verify result: TRUE
+2025-11-22 13:03:58 - SMS Send SUCCESS - message_id found, API Response Time: 606.27ms
+2025-11-22 13:03:58 - OTP Send Complete - Phone: 09627058707, Total Time: 608.73ms
+2025-11-22 13:10:38 - SMS Send SUCCESS - message_id found, API Response Time: 536.88ms
+2025-11-22 13:10:38 - OTP Send Complete - Phone: 09627058707, Total Time: 538.12ms
+2025-11-22 13:12:07 - SMS Send SUCCESS - message_id found, API Response Time: 526.85ms
+2025-11-22 13:12:07 - OTP Send Complete - Phone: 09627058707, Total Time: 528.07ms
+2025-11-22 13:12:29 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:29 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:12:54 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:54 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:12:55 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:56 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:12:56 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:56 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:12:56 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:56 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:12:56 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:56 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:12:56 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:56 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:12:56 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:12:57 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:13:06 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:13:06 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:13:06 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:13:07 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:13:07 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:13:07 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:13:07 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:13:07 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:13:24 - SMS Send SUCCESS - message_id found, API Response Time: 498.4ms
+2025-11-22 13:13:24 - OTP Send Complete - Phone: 09627058707, Total Time: 499.32ms
+2025-11-22 13:14:08 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 13:14:08 - OTP Verify (Hashed) - password_verify result: FALSE
+2025-11-22 13:20:05 - SMS Send SUCCESS - message_id found, API Response Time: 545.83ms
+2025-11-22 13:20:05 - OTP Send Complete - Phone: 09627058707, Total Time: 547.44ms
+2025-11-22 13:44:50 - SMS Send SUCCESS - message_id found, API Response Time: 547.43ms
+2025-11-22 13:44:50 - OTP Send Complete - Phone: 09627058707, Total Time: 548.64ms
+2025-11-22 13:47:19 - SMS Send SUCCESS - message_id found, API Response Time: 547.48ms
+2025-11-22 13:47:19 - OTP Send Complete - Phone: 09627058707, Total Time: 553.26ms
+2025-11-22 14:20:17 - SMS Send SUCCESS - message_id found, API Response Time: 580.87ms
+2025-11-22 14:20:17 - OTP Send Complete - Phone: 09627058707, Total Time: 584.51ms
+2025-11-22 14:24:01 - SMS Send SUCCESS - message_id found, API Response Time: 516.11ms
+2025-11-22 14:24:01 - OTP Send Complete - Phone: 09627058707, Total Time: 518.27ms
+2025-11-22 14:24:48 - OTP Verify Attempt - Phone: 09627058707, Entered OTP Length: 6, Stored OTP Length: 60
+2025-11-22 14:24:48 - OTP Verify (Hashed) - password_verify result: TRUE
+2025-11-22 17:59:19 - SMS Send SUCCESS - message_id found, API Response Time: 548.45ms
+2025-11-22 17:59:19 - OTP Send Complete - Phone: 09627058707, Total Time: 550.24ms
+2025-11-22 18:36:57 - SMS Send SUCCESS - message_id found, API Response Time: 1789.75ms
+2025-11-22 18:36:57 - OTP Send Complete - Phone: 09461075459, Total Time: 1791.22ms
+2025-11-22 21:29:13 - SMS Send SUCCESS - message_id found, API Response Time: 449.24ms
+2025-11-22 21:33:33 - SMS Send SUCCESS - message_id found, API Response Time: 412.49ms
+2025-11-22 21:56:43 - SMS Send SUCCESS - message_id found, API Response Time: 507.28ms
+2025-11-24 16:05:10 - OTP Sent - Phone: 09461075459
+2025-11-24 16:44:21 - OTP Sent - Phone: 09461075459
+2025-11-25 05:39:38 - OTP Sent - Phone: 09461075459
+2025-11-25 07:57:23 - OTP Sent - Phone: 09627058707
+2025-11-25 09:07:04 - OTP Sent - Phone: 09627058707
+2025-11-25 09:08:25 - OTP Sent - Phone: 09627058707
+2025-11-25 22:21:44 - OTP Sent - Phone: 09700813861
+2025-11-25 22:23:34 - OTP Resent - Phone: 09700813861
+2025-11-25 22:24:06 - OTP Sent - Phone: 09354759816
+2025-11-26 16:44:10 - OTP Sent - Phone: 09461075459
+2025-11-26 18:09:58 - OTP Sent - Phone: 09461075459
+2025-11-26 18:11:28 - OTP Resent - Phone: 09461075459
+2025-11-26 18:13:18 - OTP Sent - Phone: 09461075459
+2025-11-26 18:18:55 - OTP Resent - Phone: 09461075459
+2025-11-26 19:38:58 - OTP Sent - Phone: 09317395103
+2025-11-27 17:55:46 - OTP Sent - Phone: 09307836628
+2025-11-27 17:58:01 - OTP Sent - Phone: 09307836628
+2025-11-27 18:06:38 - OTP Sent - Phone: 09307836628
+2025-11-28 08:44:51 - OTP Sent - Phone: 09307836628
+2025-11-28 08:45:12 - OTP Sent - Phone: 09461075459
+2025-11-28 08:52:12 - OTP Sent - Phone: 09461075459
+2025-11-28 08:56:56 - OTP Sent - Phone: 09565289598
+2025-11-28 08:59:17 - OTP Sent - Phone: 09518348359
+2025-11-28 09:07:46 - OTP Sent - Phone: 09278975367
+2025-11-28 11:23:12 - OTP Sent - Phone: 09307836628
+2025-11-28 11:35:20 - OTP Sent - Phone: 09518348359
+2025-11-28 11:36:23 - OTP Resent - Phone: 09518348359
+2025-11-28 11:37:46 - OTP Sent - Phone: 09627058707
+2025-11-28 11:40:09 - OTP Sent - Phone: 09461075459
+2025-11-28 11:45:48 - OTP Resent - Phone: 09461075459
+2025-11-28 11:47:25 - OTP Sent - Phone: 09627058707
+2025-11-28 11:49:38 - OTP Resent - Phone: 09627058707
+2025-11-28 11:52:35 - OTP Sent - Phone: 09461075459
+2025-11-28 11:56:12 - OTP Sent - Phone: 09461075459
+2025-11-28 12:43:03 - OTP Sent - Phone: 09307836628
+2025-11-28 12:50:40 - OTP Sent - Phone: 09518348359
+2025-11-28 12:52:23 - OTP Sent - Phone: 09518348359
+2025-11-28 12:53:02 - OTP Sent - Phone: 09565289598
+2025-11-28 12:56:31 - OTP Sent - Phone: 09278975367
+2025-11-28 12:59:06 - OTP Sent - Phone: 09461075459
+2025-11-28 13:07:59 - OTP Sent - Phone: 09627058707
+2025-11-28 13:09:44 - OTP Resent - Phone: 09627058707
+2025-11-28 15:25:25 - OTP Sent - Phone: 09518348359
+2025-12-01 17:03:36 - OTP Sent - Phone: 09451350114
