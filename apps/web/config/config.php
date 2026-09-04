@@ -19,11 +19,20 @@ load_env();
 // Set Timezone to Manila
 date_default_timezone_set('Asia/Manila');
 
-// Error reporting - SET TO 0 IN PRODUCTION
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
+// Error reporting
+$appDebug = filter_var(env('APP_DEBUG', false), FILTER_VALIDATE_BOOL);
+if ($appDebug) {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+} else {
+    error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+    ini_set('display_errors', 0);
+}
 ini_set('log_errors', 1);
-ini_set('error_log', RUNTIME_PATH . '/logs/php_errors.log');
+if (defined('RUNTIME_PATH') && is_dir(RUNTIME_PATH . '/logs') && is_writable(RUNTIME_PATH . '/logs')) {
+    ini_set('error_log', RUNTIME_PATH . '/logs/php_errors.log');
+}
 
 // Timezone
 date_default_timezone_set('Asia/Manila');
@@ -210,7 +219,7 @@ spl_autoload_register(function ($class) {
 });
 
 // SINGLE SESSION ENFORCEMENT - FINAL WORKING VERSION
-if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['session_id']) && $pdo !== null) {
     $user_id    = $_SESSION['user_id'];
     $session_id = $_SESSION['session_id'];
 

@@ -1,5 +1,5 @@
 <?php
-require_once 'config/config.php';
+require_once __DIR__ . '/config/config.php';
 
 // Check if user is logged in and redirect accordingly
 if (is_logged_in()) {
@@ -19,6 +19,6 @@ if (is_logged_in()) {
     }
 } else {
     // Show landing page for non-logged in users
-    include 'views/landing.php';
+    include __DIR__ . '/views/landing.php';
 }
 ?>

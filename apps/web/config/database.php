@@ -16,7 +16,7 @@ class Database {
     private $port;
     private $driver;
     private $charset = 'utf8mb4';
-    private $pdo;
+    private $connectionError = null;
 
     public function __construct() {
         // Load database credentials from environment variables
@@ -56,8 +56,11 @@ class Database {
             ];
             
             $this->pdo = new PDO($dsn, $this->username, $this->password, $options);
+            $this->connectionError = null;
         } catch (PDOException $e) {
-            throw new PDOException($e->getMessage(), (int)$e->getCode());
+            $this->pdo = null;
+            $this->connectionError = $e->getMessage();
+            error_log('Database connection error: ' . $e->getMessage());
         }
     }
     
@@ -65,7 +68,17 @@ class Database {
         return $this->pdo;
     }
     
+    public function getError() {
+        return $this->connectionError;
+    }
+    
     public function query($sql, $params = []) {
+        if ($this->pdo === null) {
+            $this->connect();
+            if ($this->pdo === null) {
+                throw new PDOException("Database is not connected: " . ($this->connectionError ?? 'Unknown error'));
+            }
+        }
         try {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($params);
