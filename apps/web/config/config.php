@@ -150,7 +150,12 @@ function redirect($url) {
     exit(); 
 }
 
-function is_logged_in() { return isset($_SESSION['user_id']); }
+function is_logged_in() {
+    return isset($_SESSION['user_id'])
+        && isset($_SESSION['session_id'])
+        && isset($_SESSION['otp_verified'])
+        && $_SESSION['otp_verified'] === true;
+}
 function get_user_type() { return $_SESSION['user_type'] ?? null; }
 function get_user_id() { return $_SESSION['user_id'] ?? null; }
 function get_customer_id() { return $_SESSION['customer_id'] ?? null; }

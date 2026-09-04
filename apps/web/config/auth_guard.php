@@ -17,11 +17,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type'])) {
 }
 
 // === 2. Logged in but 2FA not completed? → Force 2FA page
-if (isset($_SESSION['2fa_pending']) && $_SESSION['2fa_pending'] === true) {
-    // Allow only these pages during 2FA flow
+if (isset($_SESSION['2fa_user_id']) && (!isset($_SESSION['otp_verified']) || $_SESSION['otp_verified'] !== true)) {
     $allowed_during_2fa = [
+        'auth/verify_2fa.php',
         'auth/2fa-verify.php',
-        'auth/resend-otp.php',
         'auth/logout.php',
         'assets/',
         'api/',
@@ -42,8 +41,7 @@ if (isset($_SESSION['2fa_pending']) && $_SESSION['2fa_pending'] === true) {
     }
 
     if (!$allowed) {
-        // Force redirect to 2FA verification
-        redirect(base_url('auth/2fa-verify.php'));
+        redirect(base_url('auth/verify_2fa.php'));
         exit;
     }
 }

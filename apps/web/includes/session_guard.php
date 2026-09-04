@@ -61,6 +61,14 @@ if ($is_public_path) {
     return;
 }
 
+// Pending login 2FA — user has passed password check but not OTP yet
+if (isset($_SESSION['2fa_user_id']) && (!isset($_SESSION['otp_verified']) || $_SESSION['otp_verified'] !== true)) {
+    if (strpos($current_path, '/auth/verify_2fa.php') === false) {
+        redirect(base_url('auth/verify_2fa.php'));
+    }
+    exit;
+}
+
 // ————————————————————————————————————————
 // FROM HERE: User must be logged in + OTP verified
 // ————————————————————————————————————————

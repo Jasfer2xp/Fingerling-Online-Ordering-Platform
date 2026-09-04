@@ -1,6 +1,7 @@
 <?php
 require_once '../config/config.php';
 require_once '../includes/mailer.php';
+require_once '../includes/login_otp.php';
 
 // Force start session
 if (session_status() === PHP_SESSION_NONE) {
@@ -65,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             $user = new User($database);
-            $login_result = $user->login($email, $password);
+            $login_result = $user->login($email, $password, false);
 
             // === LOGIN FAILED (wrong credentials) ===
             if (!$login_result) {
@@ -176,39 +177,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // === PROCEED TO 2FA ===
                 if ($error === '' && $requires_2fa) {
-                    $otp = rand(100000, 999999);
-                    $expires_at = date('Y-m-d H:i:s', strtotime('+15 minutes'));
-                    $otpStored = false;
+                    $sendResult = issue_login_otp($database, $result['id'], $email);
 
-                    try {
-                        $sql = "INSERT INTO user_2fa_otps (user_id, otp_code, expires_at, created_at)
-                                VALUES (?, ?, ?, NOW())
-                                ON DUPLICATE KEY UPDATE otp_code = VALUES(otp_code), expires_at = VALUES(expires_at)";
-                        $pdo->prepare($sql)->execute([$result['id'], $otp, $expires_at]);
-                        $otpStored = true;
-                    } catch (Exception $e) {
-                        try {
-                            $sql = "INSERT INTO user_otps (user_id, otp, expires_at, created_at)
-                                    VALUES (?, ?, ?, NOW())
-                                    ON DUPLICATE KEY UPDATE otp = VALUES(otp), expires_at = VALUES(expires_at)";
-                            $pdo->prepare($sql)->execute([$result['id'], $otp, $expires_at]);
-                            $otpStored = true;
-                        } catch (Exception $e2) {
-                            error_log("2FA OTP store failed: " . $e2->getMessage());
-                        }
-                    }
+                    if (!empty($sendResult['success'])) {
+                        begin_pending_2fa_session($result['id'], $result['user_type'], $email, $remember);
+                        mark_login_otp_sent();
 
-                    if ($otpStored && send_app_email($email, APP_NAME . " Login Verification", "Your OTP is: $otp\nValid for 15 minutes.")) {
-                        $_SESSION['2fa_user_id'] = $result['id'];
-                        $_SESSION['2fa_user_type'] = $result['user_type'];
-                        $_SESSION['2fa_email'] = $email; // Use plain text email, not hashed
-                        $_SESSION['2fa_remember'] = $remember;
-                        if ($remember) {
-                            $_SESSION['2fa_remember_token'] = bin2hex(random_bytes(32));
+                        if (!empty($sendResult['dev_fallback']) && !empty($sendResult['otp_plain'])) {
+                            $_SESSION['dev_otp_display'] = $sendResult['otp_plain'];
+                            $_SESSION['dev_otp_mail_error'] = $sendResult['mail_error'] ?? '';
                         }
+
                         redirect(base_url('auth/verify_2fa.php'));
                     } else {
+                        clear_2fa_session_flags();
                         $error = 'Failed to send OTP. Please try again.';
+                        if (mail_is_local_dev_mode()) {
+                            $error .= ' Check SMTP_USERNAME/SMTP_PASSWORD in .env (use a Gmail App Password, not your login password).';
+                        }
+                        error_log('Login OTP email failed: ' . ($sendResult['error'] ?? 'unknown'));
                     }
                 }
             }

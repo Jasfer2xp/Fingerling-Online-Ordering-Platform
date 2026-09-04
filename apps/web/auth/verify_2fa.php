@@ -1,123 +1,74 @@
 <?php
 require_once '../config/config.php';
-require_once '../includes/session_guard.php';
+require_once '../includes/login_otp.php';
 require_once '../config/database.php';
-require_once '../includes/mailer.php';
 
-// Start session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// === HELPER: Safe Redirect ===
-if (!function_exists('redirect')) {
-    function redirect($url) {
-        header("Location: " . $url);
-        exit;
-    }
-}
-
-// === HELPER: Base URL ===
-if (!function_exists('base_url')) {
-    function base_url($path = '') {
-        if (defined('BASE_URL')) {
-            return rtrim(BASE_URL, '/') . '/' . ltrim($path, '/');
-        }
-        // Fallback: construct from current request
-        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
-        $host = $_SERVER['HTTP_HOST'] ?? 'fingerling.shop';
-        $scriptDir = dirname($_SERVER['SCRIPT_NAME']);
-        // Remove /auth from path if we're in auth directory
-        $base = $protocol . $host . str_replace('/auth', '', $scriptDir);
-        return rtrim($base, '/') . '/' . ltrim($path, '/');
-    }
-}
-
-// === SECURITY: Must be in 2FA flow ===
 if (!isset($_SESSION['2fa_user_id']) || !isset($_SESSION['2fa_user_type'])) {
     redirect(base_url('auth/login.php'));
 }
 
-// === CRITICAL FIX: BLOCK SUSPENDED SUPPLIERS BEFORE OTP VERIFICATION ===
-$user_id = $_SESSION['2fa_user_id'];
+$user_id = (int) $_SESSION['2fa_user_id'];
 $user_type = $_SESSION['2fa_user_type'];
+$error = '';
+$success = '';
+$email = $_SESSION['2fa_email'] ?? '';
+$devOtpDisplay = $_SESSION['dev_otp_display'] ?? null;
+$devOtpMailError = $_SESSION['dev_otp_mail_error'] ?? '';
 
 if ($user_type === 'supplier') {
     try {
-        $stmt = $pdo->prepare("SELECT s.id, s.status, s.suspension_reason 
-                               FROM suppliers s 
+        $stmt = $pdo->prepare("SELECT s.id, s.status, s.suspension_reason
+                               FROM suppliers s
                                WHERE s.user_id = ?");
         $stmt->execute([$user_id]);
         $supplier = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($supplier && $supplier['status'] === 'suspended') {
-            // Clear 2FA session to prevent loop
-            unset(
-                $_SESSION['2fa_user_id'],
-                $_SESSION['2fa_user_type'],
-                $_SESSION['2fa_email'],
-                $_SESSION['2fa_remember'],
-                $_SESSION['2fa_remember_token']
-            );
-
-            // Prepare suspension page
+            clear_2fa_session_flags();
             $_SESSION['suspended_supplier_id'] = $supplier['id'];
             $_SESSION['suspension_reason'] = $supplier['suspension_reason'] ?? 'Your account has been suspended by the administrator.';
-
             redirect(base_url('auth/report_suspension.php'));
         }
     } catch (Exception $e) {
         error_log("Suspension check failed in verify_2fa.php: " . $e->getMessage());
-        // Continue — don't break login if DB fails
     }
 }
 
-// Now safe to proceed
-$error = '';
-$success = '';
-$email = $_SESSION['2fa_email'] ?? '';
+$resendState = login_otp_resend_allowed();
+$can_resend = $resendState['allowed'];
+$resend_remaining = $resendState['remaining'];
 
-// === RESEND OTP ===
 if (isset($_POST['resend_otp'])) {
-    $otp = rand(100000, 999999);
-    $expires_at = date('Y-m-d H:i:s', strtotime('+15 minutes'));
-
-    $sent = false;
-
-    try {
-        $sql = "INSERT INTO user_2fa_otps (user_id, otp_code, expires_at, created_at) 
-                VALUES (?, ?, ?, NOW()) 
-                ON DUPLICATE KEY UPDATE otp_code = VALUES(otp_code), expires_at = VALUES(expires_at), created_at = NOW()";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$user_id, $otp, $expires_at]);
-        $sent = true;
-    } catch (Exception $e) {
-        try {
-            $sql = "INSERT INTO user_otps (user_id, otp, expires_at, created_at) 
-                    VALUES (?, ?, ?, NOW()) 
-                    ON DUPLICATE KEY UPDATE otp = VALUES(otp), expires_at = VALUES(expires_at), created_at = NOW()";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$user_id, $otp, $expires_at]);
-            $sent = true;
-        } catch (Exception $e2) {
-            error_log("Resend OTP failed: " . $e2->getMessage());
-        }
-    }
-
-    if ($sent) {
-        $subject = "Your OTP Code";
-        $message = "Your OTP code is: $otp\n\nThis code will expire in 15 minutes.";
-        if (send_app_email($email, $subject, $message)) {
-            $success = 'New OTP has been sent to your email.';
+    if (!$can_resend) {
+        $error = 'Please wait ' . $resend_remaining . ' seconds before requesting another code.';
+    } else {
+        $sendResult = issue_login_otp($database, $user_id, $email);
+        if (!empty($sendResult['success'])) {
+            mark_login_otp_sent();
+            $can_resend = false;
+            $resend_remaining = LOGIN_OTP_RESEND_COOLDOWN;
+            if (!empty($sendResult['dev_fallback']) && !empty($sendResult['otp_plain'])) {
+                $_SESSION['dev_otp_display'] = $sendResult['otp_plain'];
+                $_SESSION['dev_otp_mail_error'] = $sendResult['mail_error'] ?? '';
+                $devOtpDisplay = $sendResult['otp_plain'];
+                $devOtpMailError = $_SESSION['dev_otp_mail_error'];
+                $success = 'Email delivery failed in local dev mode. Use the code shown below.';
+            } else {
+                unset($_SESSION['dev_otp_display'], $_SESSION['dev_otp_mail_error']);
+                $devOtpDisplay = null;
+                $success = 'A new OTP has been sent to your email.';
+            }
         } else {
             $error = 'Failed to send email. Please try again.';
+            error_log('2FA resend failed: ' . ($sendResult['error'] ?? 'unknown'));
         }
-    } else {
-        $error = 'Failed to generate OTP. Please try again.';
     }
 }
 
-// === VERIFY OTP ===
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['otp']) || isset($_POST['otp_digits']))) {
     $otp = '';
     if (isset($_POST['otp'])) {
@@ -129,90 +80,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['otp']) || isset($_PO
     if (empty($otp) || strlen($otp) !== 6 || !ctype_digit($otp)) {
         $error = 'Please enter the 6-digit OTP code.';
     } else {
-        $otp_record = null;
+        $verifyResult = verify_login_otp($database, $user_id, $otp);
 
-        try {
-            $sql = "SELECT * FROM user_2fa_otps WHERE user_id = ? AND otp_code = ? AND expires_at > NOW()";
-            $otp_record = $database->fetch($sql, [$user_id, $otp]);
-        } catch (Exception $e) {
-            try {
-                $sql = "SELECT * FROM user_otps WHERE user_id = ? AND otp = ? AND expires_at > NOW()";
-                $otp_record = $database->fetch($sql, [$user_id, $otp]);
-            } catch (Exception $e2) {
-                error_log("OTP check failed: " . $e2->getMessage());
-            }
-        }
+        if (!empty($verifyResult['success'])) {
+            $user = new User($database);
+            if (!$user->completeLogin($user_id)) {
+                clear_2fa_session_flags();
+                $error = 'Login failed. Please try again.';
+            } else {
+                $_SESSION['otp_verified'] = true;
+                $_SESSION['otp_verified_at'] = time();
+                $_SESSION['user_email'] = $email;
+                session_regenerate_id(true);
 
-        if ($otp_record) {
-            // === OTP VALID: Complete Login ===
-            try {
-                $delete_sql = "DELETE FROM user_2fa_otps WHERE user_id = ?";
-                $stmt = $pdo->prepare($delete_sql);
-                $stmt->execute([$user_id]);
-            } catch (Exception $e) {
-                try {
-                    $delete_sql = "DELETE FROM user_otps WHERE user_id = ?";
-                    $stmt = $pdo->prepare($delete_sql);
-                    $stmt->execute([$user_id]);
-                } catch (Exception $e2) {}
-            }
+                if (!empty($_SESSION['2fa_remember']) && !empty($_SESSION['2fa_remember_token'])) {
+                    $token = $_SESSION['2fa_remember_token'];
+                    setcookie('remember_token', $token, time() + (30 * 24 * 60 * 60), '/', '', true, true);
 
-            // Set authenticated session
-            $_SESSION['user_id'] = $user_id;
-            $_SESSION['user_type'] = $user_type;
-            $_SESSION['user_email'] = $email;
-
-            // Set OTP verified flag for security
-            $_SESSION['otp_verified'] = true;
-            $_SESSION['otp_verified_at'] = time();
-            
-            // Regenerate session ID after OTP verification for security
-            session_regenerate_id(true);
-
-            if (!empty($_SESSION['2fa_remember']) && !empty($_SESSION['2fa_remember_token'])) {
-                $token = $_SESSION['2fa_remember_token'];
-                setcookie('remember_token', $token, time() + (30 * 24 * 60 * 60), '/', '', true, true);
-
-                if (isset($pdo) && $pdo instanceof PDO) {
-                    try {
-                        $stmt = $pdo->prepare("INSERT INTO remember_tokens (user_id, token, expires_at) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 30 DAY))");
-                        $stmt->execute([$user_id, $token]);
-                    } catch (Exception $rememberException) {
-                        error_log('Remember token save failed: ' . $rememberException->getMessage());
+                    if (isset($pdo) && $pdo instanceof PDO) {
+                        try {
+                            $stmt = $pdo->prepare("INSERT INTO remember_tokens (user_id, token, expires_at) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 30 DAY))");
+                            $stmt->execute([$user_id, $token]);
+                        } catch (Exception $rememberException) {
+                            error_log('Remember token save failed: ' . $rememberException->getMessage());
+                        }
                     }
                 }
-            }
 
-            if (isset($_SESSION['session_takeover']) && $_SESSION['session_takeover']) {
-                $_SESSION['success'] = 'Someone was already using this account. You have now taken over the session.';
-                unset($_SESSION['session_takeover']);
-            }
+                if (isset($_SESSION['session_takeover']) && $_SESSION['session_takeover']) {
+                    $_SESSION['success'] = 'Someone was already using this account. You have now taken over the session.';
+                    unset($_SESSION['session_takeover']);
+                }
 
-            // Clear 2FA temp data
-            unset(
-                $_SESSION['2fa_user_id'],
-                $_SESSION['2fa_user_type'],
-                $_SESSION['2fa_email'],
-                $_SESSION['2fa_remember'],
-                $_SESSION['2fa_remember_token']
-            );
+                clear_2fa_session_flags();
+                unset($_SESSION['dev_otp_display'], $_SESSION['dev_otp_mail_error']);
 
-            // Redirect to dashboard
-            switch ($user_type) {
-                case 'admin':
-                    redirect(base_url('admin/dashboard.php'));
-                    break;
-                case 'supplier':
-                    redirect(base_url('supplier/dashboard.php'));
-                    break;
-                case 'customer':
-                    redirect(base_url('customer/dashboard.php'));
-                    break;
-                default:
-                    redirect(base_url());
+                switch ($user_type) {
+                    case 'admin':
+                        redirect(base_url('admin/dashboard.php'));
+                        break;
+                    case 'supplier':
+                        redirect(base_url('supplier/dashboard.php'));
+                        break;
+                    case 'customer':
+                        redirect(base_url('customer/dashboard.php'));
+                        break;
+                    default:
+                        redirect(base_url());
+                }
             }
         } else {
-            $error = 'Invalid or expired OTP code.';
+            $error = $verifyResult['error'] ?? 'Invalid or expired OTP code.';
         }
     }
 }
@@ -334,9 +252,13 @@ $page_title = 'Verify OTP';
             font-weight: 500;
             transition: background .2s ease, color .2s ease, border-color .2s ease;
         }
-        .btn-ghost:hover {
+        .btn-ghost:hover:not(:disabled) {
             background: rgba(148, 163, 184, 0.1);
             border-color: rgba(148, 163, 184, 0.6);
+        }
+        .btn-ghost:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
         }
         .alert {
             border-radius: 14px;
@@ -367,6 +289,27 @@ $page_title = 'Verify OTP';
             color: #fff;
             gap: 0.55rem;
         }
+        .dev-otp-banner {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            color: #fde68a;
+            border-radius: 14px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.92rem;
+        }
+        .dev-otp-code {
+            display: inline-block;
+            margin-top: 0.35rem;
+            font-size: 1.5rem;
+            letter-spacing: 0.35rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .countdown {
+            color: #fbbf24;
+            font-weight: 600;
+        }
         @media (max-width: 575px) {
             .otp-card {
                 padding: 2rem 1.5rem;
@@ -383,12 +326,23 @@ $page_title = 'Verify OTP';
             <h1>Verify your account</h1>
             <p>Enter the 6-digit code sent to <strong><?php echo htmlspecialchars($email); ?></strong></p>
 
+            <?php if ($devOtpDisplay): ?>
+                <div class="dev-otp-banner">
+                    Local development mode: email could not be sent
+                    <?php if ($devOtpMailError): ?>
+                        (<?php echo htmlspecialchars($devOtpMailError); ?>)
+                    <?php endif; ?>.
+                    <br>Use this OTP to continue:
+                    <div class="dev-otp-code"><?php echo htmlspecialchars($devOtpDisplay); ?></div>
+                </div>
+            <?php endif; ?>
+
             <?php if ($error): ?>
-                <div class="alert error-alert mb-3"><?php echo $error; ?></div>
+                <div class="alert error-alert mb-3"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
 
             <?php if ($success): ?>
-                <div class="alert success-alert mb-3"><?php echo $success; ?></div>
+                <div class="alert success-alert mb-3"><?php echo htmlspecialchars($success); ?></div>
             <?php endif; ?>
 
             <form method="POST">
@@ -414,7 +368,12 @@ $page_title = 'Verify OTP';
 
             <div class="mt-3">
                 <form method="POST">
-                    <button type="submit" name="resend_otp" class="btn-ghost">Resend OTP</button>
+                    <button type="submit" name="resend_otp" class="btn-ghost" <?php echo $can_resend ? '' : 'disabled'; ?>>
+                        Resend OTP
+                        <?php if (!$can_resend): ?>
+                            <span class="countdown">(<?php echo (int) $resend_remaining; ?>s)</span>
+                        <?php endif; ?>
+                    </button>
                 </form>
             </div>
 
@@ -463,6 +422,28 @@ $page_title = 'Verify OTP';
         });
 
         otpInputs[0]?.focus();
+
+        <?php if (!$can_resend): ?>
+        (function () {
+            let seconds = <?php echo (int) $resend_remaining; ?>;
+            const countdownEl = document.querySelector('.countdown');
+            const resendBtn = countdownEl ? countdownEl.closest('button') : null;
+            if (!countdownEl || !resendBtn) {
+                return;
+            }
+
+            const timer = setInterval(function () {
+                seconds--;
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    resendBtn.disabled = false;
+                    countdownEl.remove();
+                    return;
+                }
+                countdownEl.textContent = '(' + seconds + 's)';
+            }, 1000);
+        })();
+        <?php endif; ?>
     </script>
 </body>
 </html>
