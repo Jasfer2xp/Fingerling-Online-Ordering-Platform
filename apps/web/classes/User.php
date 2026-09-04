@@ -52,7 +52,7 @@ class User {
         }
     }
     
-    public function login($email, $password) {
+    public function login($email, $password, $createSession = true) {
         // Find user by plain text email only (no hashing)
         $sql = "SELECT * FROM users WHERE email = ? LIMIT 1";
         $user = $this->db->fetch($sql, [$email]);
@@ -89,7 +89,9 @@ class User {
         if (password_verify($password, $user['password_hash'])) {
             // Email is already plain text, ensure it's set correctly
             $user['email'] = $email;
-            $this->createSession($user);
+            if ($createSession) {
+                $this->createSession($user);
+            }
             return $user;
         }
         
@@ -161,6 +163,20 @@ class User {
     public function getUserById($id) {
         $sql = "SELECT * FROM users WHERE id = ?";
         return $this->db->fetch($sql, [$id]);
+    }
+
+    /**
+     * Create the authenticated session only after a second-factor challenge
+     * has been successfully completed.
+     */
+    public function completeLogin($userId) {
+        $user = $this->getUserById($userId);
+        if (!$user || ($user['status'] ?? null) === 'deleted') {
+            return false;
+        }
+
+        $this->createSession($user);
+        return $user;
     }
     
     public function getUserProfile($user_id) {

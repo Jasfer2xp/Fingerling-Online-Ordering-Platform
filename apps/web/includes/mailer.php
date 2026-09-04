@@ -17,43 +17,16 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 /**
- * Retrieve a setting from DB settings table with simple static cache fallback
- */
-function _mail_get_setting($key, $default = '') {
-    static $cache = null;
-    if ($cache === null) {
-        $cache = [];
-        try {
-            if (isset($GLOBALS['database'])) {
-                $rows = $GLOBALS['database']->fetchAll('SELECT setting_key, setting_value FROM settings');
-                foreach ($rows as $row) {
-                    $cache[$row['setting_key']] = $row['setting_value'];
-                }
-            }
-        } catch (Throwable $e) {
-            // ignore DB failures here
-        }
-    }
-    return $cache[$key] ?? $default;
-}
-
-/**
- * Build SMTP configuration using constants, falling back to DB settings
+ * Build SMTP configuration from environment-backed constants only.
  */
 function _mail_smtp_config() {
-    $host = defined('SMTP_HOST') && SMTP_HOST ? SMTP_HOST : _mail_get_setting('smtp_host', env('SMTP_HOST', 'smtp.gmail.com'));
-    $port = defined('SMTP_PORT') && SMTP_PORT ? (int)SMTP_PORT : (int)_mail_get_setting('smtp_port', env('SMTP_PORT', 587));
-    $username = defined('SMTP_USERNAME') ? SMTP_USERNAME : '';
-    $password = defined('SMTP_PASSWORD') ? SMTP_PASSWORD : '';
-
-    if (!$username) { $username = _mail_get_setting('smtp_username', env('SMTP_USERNAME', '')); }
-    if (!$password) { $password = _mail_get_setting('smtp_password', env('SMTP_PASSWORD', '')); }
-
-    $from_email = defined('FROM_EMAIL') && FROM_EMAIL ? FROM_EMAIL : _mail_get_setting('from_email', env('FROM_EMAIL', 'noreply@example.com'));
-    $from_name  = defined('FROM_NAME') && FROM_NAME ? FROM_NAME : _mail_get_setting('from_name', env('FROM_NAME', APP_NAME));
-
-    $enc = _mail_get_setting('smtp_encryption', env('SMTP_ENCRYPTION', 'tls'));
-    if (!$enc) { $enc = env('SMTP_ENCRYPTION', 'tls'); }
+    $host = defined('SMTP_HOST') ? SMTP_HOST : env('SMTP_HOST', 'smtp.gmail.com');
+    $port = defined('SMTP_PORT') ? (int) SMTP_PORT : (int) env('SMTP_PORT', 587);
+    $username = defined('SMTP_USERNAME') ? SMTP_USERNAME : env('SMTP_USERNAME', '');
+    $password = defined('SMTP_PASSWORD') ? SMTP_PASSWORD : env('SMTP_PASSWORD', '');
+    $from_email = defined('FROM_EMAIL') ? FROM_EMAIL : env('FROM_EMAIL', '');
+    $from_name = defined('FROM_NAME') ? FROM_NAME : env('FROM_NAME', APP_NAME);
+    $enc = env('SMTP_ENCRYPTION', 'tls');
 
     return [
         'host' => $host,
