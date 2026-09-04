@@ -1,12 +1,6 @@
 {
   "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.2"
-    },
-    "apps/**/*.php": {
-      "runtime": "vercel-php@0.7.2"
-    },
-    "index.php": {
+    "api/index.php": {
       "runtime": "vercel-php@0.7.2"
     }
   },
@@ -20,8 +14,16 @@
       "dest": "/apps/web/uploads/$1"
     },
     {
+      "src": "/images/(.*)",
+      "dest": "/apps/web/images/$1"
+    },
+    {
+      "src": "/gif/(.*)",
+      "dest": "/apps/web/gif/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/apps/web/$1"
+      "dest": "/api/index.php"
     }
   ]
 }
