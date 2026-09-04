@@ -13,6 +13,8 @@ class Database {
     private $db_name;
     private $username;
     private $password;
+    private $port;
+    private $driver;
     private $charset = 'utf8mb4';
     private $pdo;
 
@@ -24,13 +26,29 @@ class Database {
         $this->db_name = env('DB_NAME', 'fingerlings');
         $this->username = env('DB_USER', 'root');
         $this->password = env('DB_PASS', '');
+        $this->port = env('DB_PORT', '');
+        $this->driver = strtolower((string) env('DB_DRIVER', ''));
+        
+        if (empty($this->driver)) {
+            if ($this->port === '5432' || $this->port === '6543' || stripos($this->host, 'supabase') !== false) {
+                $this->driver = 'pgsql';
+            } else {
+                $this->driver = 'mysql';
+            }
+        }
         
         $this->connect();
     }
     
     private function connect() {
         try {
-            $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset={$this->charset}";
+            if ($this->driver === 'pgsql') {
+                $portPart = !empty($this->port) ? ";port={$this->port}" : ";port=5432";
+                $dsn = "pgsql:host={$this->host}{$portPart};dbname={$this->db_name}";
+            } else {
+                $portPart = !empty($this->port) ? ";port={$this->port}" : "";
+                $dsn = "mysql:host={$this->host}{$portPart};dbname={$this->db_name};charset={$this->charset}";
+            }
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
