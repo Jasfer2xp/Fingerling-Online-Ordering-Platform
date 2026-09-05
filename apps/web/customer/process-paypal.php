@@ -309,14 +309,11 @@ try {
     // Optionally save to database if paypal_orders table exists
     try {
         // Try to insert into paypal_orders if table exists
+        try { $database->query("DELETE FROM paypal_orders WHERE paypal_order_id = ?", [$paypal_order_id]); } catch (Exception $e) {}
         $database->query("
             INSERT INTO paypal_orders 
             (paypal_order_id, order_id, customer_id, amount, status, created_at)
             VALUES (?, ?, ?, ?, 'CREATED', NOW())
-            ON DUPLICATE KEY UPDATE 
-                amount = VALUES(amount),
-                status = VALUES(status),
-                updated_at = NOW()
         ", [
             $paypal_order_id,
             $order_id,

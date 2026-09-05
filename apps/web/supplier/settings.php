@@ -58,15 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'email_marketing' => isset($_POST['email_marketing']) ? 1 : 0
             ];
             try {
+                try { $database->query("DELETE FROM notification_preferences WHERE user_id = ?", [$user_id]); } catch (Exception $e) {}
                 $sql = "INSERT INTO notification_preferences (user_id, email_orders, email_payments, email_reviews, email_marketing)
-                        VALUES (?, ?, ?, ?, ?)
-                        ON DUPLICATE KEY UPDATE email_orders = ?, email_payments = ?, email_reviews = ?, email_marketing = ?";
+                        VALUES (?, ?, ?, ?, ?)";
                 $database->query($sql, [
                     $user_id,
-                    $preferences['email_orders'],
-                    $preferences['email_payments'],
-                    $preferences['email_reviews'],
-                    $preferences['email_marketing'],
                     $preferences['email_orders'],
                     $preferences['email_payments'],
                     $preferences['email_reviews'],

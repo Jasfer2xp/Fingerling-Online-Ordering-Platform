@@ -167,14 +167,11 @@ $log("XENDIT INVOICE CREATED SUCCESSFULLY → ID: {$invoice['id']} | URL: {$invo
 try {
     $customer_id = (new Customer($database))->getCustomerIdByUserId($user_id);
 
+    try { $database->query("DELETE FROM xendit_invoices WHERE invoice_id = ?", [$invoice['id']]); } catch (Exception $e) {}
     $database->query("
         INSERT INTO xendit_invoices 
         (invoice_id, external_id, order_id, customer_id, amount, invoice_url, xendit_status, created_at)
         VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
-        ON DUPLICATE KEY UPDATE 
-            invoice_url = VALUES(invoice_url),
-            xendit_status = VALUES(xendit_status),
-            amount = VALUES(amount)
     ", [
         $invoice['id'],
         $invoice['external_id'] ?? $invoice['id'],

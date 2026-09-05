@@ -26,45 +26,19 @@ function ensure_login_otp_table($database) {
         return;
     }
 
-    $database->query(
-        "CREATE TABLE IF NOT EXISTS user_2fa_otps (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            user_id INT NOT NULL,
-            otp_code VARCHAR(255) NOT NULL,
-            expires_at DATETIME NOT NULL,
-            attempts INT NOT NULL DEFAULT 0,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-            UNIQUE KEY uniq_user_2fa (user_id),
-            INDEX idx_expires_at (expires_at)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"
-    );
-
     try {
-        $column = $database->fetch("SHOW COLUMNS FROM user_2fa_otps LIKE 'attempts'");
-        if (!$column) {
-            $database->query("ALTER TABLE user_2fa_otps ADD COLUMN attempts INT NOT NULL DEFAULT 0 AFTER expires_at");
-        }
+        $database->query(
+            "CREATE TABLE IF NOT EXISTS user_2fa_otps (
+                id SERIAL PRIMARY KEY,
+                user_id INT NOT NULL,
+                otp_code VARCHAR(255) NOT NULL,
+                expires_at TIMESTAMP NOT NULL,
+                attempts INT NOT NULL DEFAULT 0,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )"
+        );
     } catch (Exception $e) {
-        error_log('login_otp attempts column migration: ' . $e->getMessage());
-    }
-
-    try {
-        $column = $database->fetch("SHOW COLUMNS FROM user_2fa_otps WHERE Field = 'otp_code'");
-        if ($column && stripos($column['Type'] ?? '', 'varchar(6)') !== false) {
-            $database->query("ALTER TABLE user_2fa_otps MODIFY otp_code VARCHAR(255) NOT NULL");
-        }
-    } catch (Exception $e) {
-        error_log('login_otp otp_code column migration: ' . $e->getMessage());
-    }
-
-    try {
-        $index = $database->fetch("SHOW INDEX FROM user_2fa_otps WHERE Key_name = 'uniq_user_2fa'");
-        if (!$index) {
-            $database->query("ALTER TABLE user_2fa_otps ADD UNIQUE KEY uniq_user_2fa (user_id)");
-        }
-    } catch (Exception $e) {
-        error_log('login_otp unique index migration: ' . $e->getMessage());
+        // Table likely already created in PostgreSQL / MySQL schema import
     }
 
     $ensured = true;
@@ -80,14 +54,14 @@ function store_login_otp($database, $user_id, $otp_plain) {
     $otp_hash = password_hash($otp_plain, PASSWORD_DEFAULT);
     $expires_at = date('Y-m-d H:i:s', time() + (LOGIN_OTP_EXPIRY_MINUTES * 60));
 
+    // Universal delete-then-insert works identically on PostgreSQL and MySQL
+    try {
+        $database->query("DELETE FROM user_2fa_otps WHERE user_id = ?", [$user_id]);
+    } catch (Exception $e) {}
+
     $database->query(
         "INSERT INTO user_2fa_otps (user_id, otp_code, expires_at, attempts, created_at)
-         VALUES (?, ?, ?, 0, NOW())
-         ON DUPLICATE KEY UPDATE
-            otp_code = VALUES(otp_code),
-            expires_at = VALUES(expires_at),
-            attempts = 0,
-            created_at = NOW()",
+         VALUES (?, ?, ?, 0, NOW())",
         [$user_id, $otp_hash, $expires_at]
     );
 

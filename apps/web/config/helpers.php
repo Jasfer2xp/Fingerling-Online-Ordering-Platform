@@ -36,8 +36,13 @@ if (!function_exists('load_env')) {
                 // Remove surrounding quotes if present
                 $value = trim($value, '"\'');
                 
-                // Set both $_ENV and via putenv()
-                $_ENV[$key] = $value;
+                // Only set if not already defined in $_ENV / $_SERVER (preserves cloud/Vercel settings)
+                if (!isset($_ENV[$key]) || $_ENV[$key] === '') {
+                    $_ENV[$key] = $value;
+                }
+                if (!isset($_SERVER[$key]) || $_SERVER[$key] === '') {
+                    $_SERVER[$key] = $value;
+                }
                 putenv("$key=$value");
             }
         }
@@ -53,14 +58,24 @@ if (!function_exists('env')) {
      * @return mixed
      */
     function env($key, $default = null) {
-        $value = getenv($key);
+        $value = null;
+        if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
+            $value = $_ENV[$key];
+        } elseif (isset($_SERVER[$key]) && $_SERVER[$key] !== '') {
+            $value = $_SERVER[$key];
+        } else {
+            $val = getenv($key);
+            if ($val !== false && $val !== '') {
+                $value = $val;
+            }
+        }
         
-        if ($value === false) {
+        if ($value === null) {
             return $default;
         }
         
         // Handle boolean values
-        switch (strtolower($value)) {
+        switch (strtolower((string) $value)) {
             case 'true':
                 return true;
             case 'false':

@@ -723,8 +723,8 @@ class Admin {
      * Update platform settings
      */
     public function updateSetting($key, $value) {
-        $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?) 
-                ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)";
+        try { $this->db->query("DELETE FROM settings WHERE setting_key = ?", [$key]); } catch (Exception $e) {}
+        $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)";
         $this->db->query($sql, [$key, $value]);
         
         $this->logAdminAction('setting_updated', 'settings', null, [
@@ -1409,8 +1409,8 @@ class Admin {
      */
     public function updateNotificationSettings($settings) {
         foreach ($settings as $key => $value) {
-            $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)
-                    ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)";
+            try { $this->db->query("DELETE FROM settings WHERE setting_key = ?", [$key]); } catch (Exception $e) {}
+            $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)";
             $this->db->query($sql, [$key, $value]);
         }
 
@@ -1437,8 +1437,8 @@ class Admin {
      */
     public function updatePaymentSettings($settings) {
         foreach ($settings as $key => $value) {
-            $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)
-                    ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)";
+            try { $this->db->query("DELETE FROM settings WHERE setting_key = ?", [$key]); } catch (Exception $e) {}
+            $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)";
             $this->db->query($sql, [$key, $value]);
         }
 
@@ -1465,8 +1465,8 @@ class Admin {
      */
     public function updateSiteContent($content) {
         foreach ($content as $key => $value) {
-            $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)
-                    ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)";
+            try { $this->db->query("DELETE FROM settings WHERE setting_key = ?", [$key]); } catch (Exception $e) {}
+            $sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)";
             $this->db->query($sql, [$key, $value]);
         }
 

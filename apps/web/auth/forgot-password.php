@@ -45,9 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $token = bin2hex(random_bytes(32));
                     $expires_at = date('Y-m-d H:i:s', time() + 3600); // 1 hour expiry
                     
-                    // Store reset token in database
-                    $sql = "INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)
-                            ON DUPLICATE KEY UPDATE token = VALUES(token), expires_at = VALUES(expires_at)";
+                    try { $database->query("DELETE FROM password_resets WHERE email = ?", [$email]); } catch (Exception $e) {}
+                    $sql = "INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)";
                     $database->query($sql, [$email, $token, $expires_at]);
                     
                     // Send reset email

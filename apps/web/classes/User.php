@@ -518,14 +518,10 @@ class User {
 
     public function updateNotificationSettings($user_id, $settings) {
         try {
+            try { $this->db->query("DELETE FROM user_notification_settings WHERE user_id = ?", [$user_id]); } catch (Exception $e) {}
             $sql = "INSERT INTO user_notification_settings
                     (user_id, email_orders, email_promotions, sms_orders, sms_promotions)
-                    VALUES (?, ?, ?, ?, ?)
-                    ON DUPLICATE KEY UPDATE
-                    email_orders = VALUES(email_orders),
-                    email_promotions = VALUES(email_promotions),
-                    sms_orders = VALUES(sms_orders),
-                    sms_promotions = VALUES(sms_promotions)";
+                    VALUES (?, ?, ?, ?, ?)";
 
             $this->db->query($sql, [
                 $user_id,
@@ -789,13 +785,12 @@ class User {
         $code_hash = password_hash($code, PASSWORD_DEFAULT);
         $expires_at = date('Y-m-d H:i:s', time() + 15 * 60);
         
+        try {
+            $this->db->query("DELETE FROM user_email_verifications WHERE user_id = ?", [$user_id]);
+        } catch (Exception $e) {}
+        
         $sql = "INSERT INTO user_email_verifications (user_id, code_hash, expires_at, attempts, verified_at) 
-                VALUES (?, ?, ?, 0, NULL) 
-                ON DUPLICATE KEY UPDATE 
-                code_hash = VALUES(code_hash), 
-                expires_at = VALUES(expires_at), 
-                attempts = 0, 
-                verified_at = NULL";
+                VALUES (?, ?, ?, 0, NULL)";
         $this->db->query($sql, [$user_id, $code_hash, $expires_at]);
         
         $_SESSION['email_change_new_email_' . $user_id] = $new_email;
