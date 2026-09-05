@@ -59,7 +59,7 @@ if (isset($_SESSION['user_id']) && ($_SESSION['user_type'] ?? '') === 'customer'
     
     // Get unread notifications count (using customer_id)
     if ($profile) {
-        $notif_sql = "SELECT COUNT(*) as count FROM notifications WHERE customer_id = ? AND is_read = 0";
+        $notif_sql = "SELECT COUNT(*) as count FROM notifications WHERE customer_id = ? AND is_read = false";
         $notif_result = $database->fetch($notif_sql, [$customer_id]);
         $unread_notifications = $notif_result['count'] ?? 0;
         
@@ -165,7 +165,7 @@ if (is_logged_in() && get_user_type() === 'customer') {
             $sql = "SELECT COUNT(*) as unread_count 
                     FROM messages m
                     JOIN conversations c ON m.conversation_id = c.id
-                    WHERE c.customer_id = ? AND m.receiver_id = ? AND m.is_read = 0";
+                    WHERE c.customer_id = ? AND m.receiver_id = ? AND m.is_read = false";
             $result = $database->fetch($sql, [$customer['id'], $user_id]);
             $unread_messages = $result ? (int)$result['unread_count'] : 0;
         }

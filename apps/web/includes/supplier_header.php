@@ -37,7 +37,7 @@ if (isset($_SESSION['user_id']) && ($_SESSION['user_type'] ?? '') === 'supplier'
                 $sql = "SELECT COUNT(*) as unread_count 
                         FROM messages m
                         JOIN conversations c ON m.conversation_id = c.id
-                        WHERE c.supplier_id = ? AND m.receiver_id = ? AND m.is_read = 0";
+                        WHERE c.supplier_id = ? AND m.receiver_id = ? AND m.is_read = false";
                 $result = $database->fetch($sql, [$supplier_data['id'], $user_id]);
                 $unread_message_count = $result ? (int)$result['unread_count'] : 0;
             }
@@ -52,7 +52,7 @@ if (isset($_SESSION['user_id']) && ($_SESSION['user_type'] ?? '') === 'supplier'
 $unread_notifications_count = 0;
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    $notification_sql = "SELECT COUNT(*) as count FROM notifications WHERE user_id = ? AND is_read = 0";
+    $notification_sql = "SELECT COUNT(*) as count FROM notifications WHERE user_id = ? AND is_read = false";
     $result = $database->fetch($notification_sql, [$user_id]);
     $unread_notifications_count = $result ? $result['count'] : 0;
 }

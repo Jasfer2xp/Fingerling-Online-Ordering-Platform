@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Update Order Status
     $database->query("UPDATE orders SET status = 'delivered', updated_at = NOW() WHERE id = ?", [$oid]);
     // Verify Proof
-    $database->query("UPDATE delivery_proofs SET admin_verified = 1 WHERE order_id = ?", [$oid]);
+    $database->query("UPDATE delivery_proofs SET admin_verified = true WHERE order_id = ?", [$oid]);
     
     $_SESSION['success'] = 'Order marked as Delivered successfully.';
     redirect(base_url("admin/order-details.php?id=$oid"));

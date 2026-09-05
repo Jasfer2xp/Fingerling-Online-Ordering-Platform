@@ -224,7 +224,7 @@ class Product {
                     GROUP BY i.id, sp.name, s.business_name, s.barangay, s.city, i.price_per_piece, 
                              i.stock_quantity, i.minimum_order, i.size_category, s.id, sp.image_url, i.image_path,
                              s.latitude, s.longitude
-                    HAVING total_sold > 1000
+                    HAVING COALESCE(SUM(oi.quantity), 0) > 1000
                     ORDER BY total_sold DESC
                     LIMIT ?";
                     
@@ -258,7 +258,7 @@ class Product {
                     AND i.stock_quantity > 0  -- Added condition to filter out zero stock items
                     GROUP BY i.id, sp.name, s.business_name, s.barangay, s.city, i.price_per_piece, 
                              i.stock_quantity, i.minimum_order, i.size_category, s.id, sp.image_url, i.image_path
-                    HAVING total_sold > 1000
+                    HAVING COALESCE(SUM(oi.quantity), 0) > 1000
                     ORDER BY total_sold DESC
                     LIMIT ?";
                     

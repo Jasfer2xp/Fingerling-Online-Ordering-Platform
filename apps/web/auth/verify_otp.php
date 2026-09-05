@@ -26,7 +26,7 @@ if (strlen($otp) !== 6 || !ctype_digit($otp)) {
 
 try {
     $sql = "SELECT * FROM phone_verifications 
-            WHERE phone = ? AND verified = 0 
+            WHERE phone = ? AND verified = false 
             ORDER BY id DESC LIMIT 1";
     $record = $database->fetch($sql, [$phone]);
 
@@ -60,7 +60,7 @@ try {
     }
 
     // Mark as verified
-    $database->query("UPDATE phone_verifications SET verified = 1 WHERE id = ?", [$record['id']]);
+    $database->query("UPDATE phone_verifications SET verified = true WHERE id = ?", [$record['id']]);
 
     // Store verified phone in session
     $_SESSION['phone_verified'] = true;

@@ -109,7 +109,7 @@ if (!function_exists('send_auto_payment_message')) {
         // Check if auto message already sent for this order
         try {
             $existing = $database->fetch(
-                "SELECT id FROM messages WHERE order_id = ? AND is_auto = 1 LIMIT 1",
+                "SELECT id FROM messages WHERE order_id = ? AND is_auto = true LIMIT 1",
                 [$orderId]
             );
             if ($existing) {
@@ -139,7 +139,7 @@ if (!function_exists('send_auto_payment_message')) {
                 if (!empty($conversation['is_archived'])) {
                     try {
                         $database->query(
-                            "UPDATE conversations SET is_archived = 0, updated_at = NOW() WHERE id = ?",
+                            "UPDATE conversations SET is_archived = false, updated_at = NOW() WHERE id = ?",
                             [$conversationId]
                         );
                         error_log("AUTO MESSAGE: Unarchived conversation {$conversationId} for order {$orderId}");
@@ -173,7 +173,7 @@ if (!function_exists('send_auto_payment_message')) {
                         }
                         if (!empty($update_check['is_archived'])) {
                             $needs_update = true;
-                            $update_fields[] = "is_archived = 0";
+                            $update_fields[] = "is_archived = false";
                         }
                         
                         if ($needs_update) {

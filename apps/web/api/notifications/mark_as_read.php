@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($user_id && is_logged_in() && get_user_id() == $user_id) {
         try {
-            $sql = "UPDATE notifications SET is_read = 1 WHERE user_id = ? AND is_read = 0";
+            $sql = "UPDATE notifications SET is_read = true WHERE user_id = ? AND is_read = false";
             $database->query($sql, [$user_id]);
             
             echo json_encode(['success' => true, 'message' => 'Notifications marked as read']);

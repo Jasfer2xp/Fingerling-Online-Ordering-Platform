@@ -35,7 +35,7 @@ try {
     }
     
     // Mark as read
-    $sql = "UPDATE notifications SET is_read = 1 WHERE id = ?";
+    $sql = "UPDATE notifications SET is_read = true WHERE id = ?";
     $database->query($sql, [$notification_id]);
     
     echo json_encode(['success' => true]);

@@ -41,7 +41,7 @@ if (!function_exists('dispatch_phone_otp')) {
         
         try {
             // Clean up stale codes for this phone
-            $database->query("DELETE FROM phone_verifications WHERE phone = ? AND (verified = 1 OR expires_at < NOW())", [$phone]);
+            $database->query("DELETE FROM phone_verifications WHERE phone = ? AND (verified = true OR expires_at < NOW())", [$phone]);
         } catch (Exception $e) {
             // Table might not have the exact columns; ignore cleanup errors
         }

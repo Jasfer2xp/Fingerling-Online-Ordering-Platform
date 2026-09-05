@@ -24,7 +24,7 @@ try {
             $sql = "SELECT COUNT(*) as unread_count 
                     FROM messages m
                     JOIN conversations c ON m.conversation_id = c.id
-                    WHERE c.customer_id = ? AND m.receiver_id = ? AND m.is_read = 0";
+                    WHERE c.customer_id = ? AND m.receiver_id = ? AND m.is_read = false";
             $result = $database->fetch($sql, [$customer['id'], $user_id]);
             $unread_count = $result ? (int)$result['unread_count'] : 0;
         }
@@ -36,7 +36,7 @@ try {
             $sql = "SELECT COUNT(*) as unread_count 
                     FROM messages m
                     JOIN conversations c ON m.conversation_id = c.id
-                    WHERE c.supplier_id = ? AND m.receiver_id = ? AND m.is_read = 0";
+                    WHERE c.supplier_id = ? AND m.receiver_id = ? AND m.is_read = false";
             $result = $database->fetch($sql, [$supplier['id'], $user_id]);
             $unread_count = $result ? (int)$result['unread_count'] : 0;
         }

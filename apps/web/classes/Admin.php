@@ -654,7 +654,7 @@ class Admin {
                 LEFT JOIN order_items oi ON o.id = oi.order_id
                 LEFT JOIN feedback f ON c.id = f.customer_id
                 GROUP BY c.id
-                HAVING total_orders > 0
+                HAVING COUNT(o.id) > 0
                 ORDER BY total_spent DESC
                 LIMIT 20";
         
@@ -1300,7 +1300,7 @@ class Admin {
                 LEFT JOIN orders o ON c.id = o.customer_id
                 WHERE u.user_type = 'customer'
                 GROUP BY c.id
-                HAVING total_orders > 0
+                HAVING COUNT(o.id) > 0
                 ORDER BY total_spent DESC
                 LIMIT ?";
 

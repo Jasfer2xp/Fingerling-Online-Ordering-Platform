@@ -44,7 +44,7 @@ if (!$order || empty($order['customer_user_id']) || empty($order['supplier_user_
 
 try {
     $existing_message = $database->fetch(
-        "SELECT id, conversation_id FROM messages WHERE order_id = ? AND is_auto = 1 LIMIT 1",
+        "SELECT id, conversation_id FROM messages WHERE order_id = ? AND is_auto = true LIMIT 1",
         [$order_id]
     );
 
@@ -76,7 +76,7 @@ function ensureConversation(Database $database, array $orderRow, int $orderId): 
             $conversation_id = (int)$conversation['id'];
             if (!empty($conversation['is_archived'])) {
                 $database->query(
-                    "UPDATE conversations SET is_archived = 0, updated_at = NOW() WHERE id = ?",
+                    "UPDATE conversations SET is_archived = false, updated_at = NOW() WHERE id = ?",
                     [$conversation_id]
                 );
             }
@@ -99,7 +99,7 @@ function ensureConversation(Database $database, array $orderRow, int $orderId): 
             }
 
             if (!empty($conversation['is_archived'])) {
-                $updates[] = "is_archived = 0";
+                $updates[] = "is_archived = false";
             }
 
             if ($updates) {

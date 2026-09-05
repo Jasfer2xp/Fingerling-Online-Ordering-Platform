@@ -548,7 +548,7 @@ class User {
             $this->db->beginTransaction();
 
             if ($address_data['is_default']) {
-                $sql = "UPDATE customer_addresses SET is_default = 0 WHERE customer_id = ?";
+                $sql = "UPDATE customer_addresses SET is_default = false WHERE customer_id = ?";
                 $this->db->query($sql, [$address_data['customer_id']]);
             }
 
@@ -591,7 +591,7 @@ class User {
             }
 
             if ($address_data['is_default']) {
-                $sql = "UPDATE customer_addresses SET is_default = 0 WHERE customer_id = ? AND id != ?";
+                $sql = "UPDATE customer_addresses SET is_default = false WHERE customer_id = ? AND id != ?";
                 $this->db->query($sql, [$customer_id, $address_id]);
             }
 
@@ -638,10 +638,10 @@ class User {
                 throw new Exception('Address not found');
             }
 
-            $sql = "UPDATE customer_addresses SET is_default = 0 WHERE customer_id = ?";
+            $sql = "UPDATE customer_addresses SET is_default = false WHERE customer_id = ?";
             $this->db->query($sql, [$customer_id]);
 
-            $sql = "UPDATE customer_addresses SET is_default = 1 WHERE id = ? AND customer_id = ?";
+            $sql = "UPDATE customer_addresses SET is_default = true WHERE id = ? AND customer_id = ?";
             $this->db->query($sql, [$address_id, $customer_id]);
 
             $this->db->commit();

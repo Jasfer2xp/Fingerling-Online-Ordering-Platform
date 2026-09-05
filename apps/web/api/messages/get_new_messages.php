@@ -62,7 +62,7 @@ try {
         $message_ids = array_column($new_messages, 'id');
         $placeholders = implode(',', array_fill(0, count($message_ids), '?'));
         $database->query(
-            "UPDATE messages SET is_read = 1 WHERE id IN ($placeholders) AND receiver_id = ?",
+            "UPDATE messages SET is_read = true WHERE id IN ($placeholders) AND receiver_id = ?",
             array_merge($message_ids, [$user_id])
         );
     }

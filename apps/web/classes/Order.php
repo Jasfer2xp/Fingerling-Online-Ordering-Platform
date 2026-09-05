@@ -840,8 +840,8 @@ class Order {
     public function markNotificationAsRead($user_id, $order_number) {
         try {
             $sql = "UPDATE notifications 
-                    SET is_read = 1 
-                    WHERE user_id = ? AND message LIKE ? AND is_read = 0";
+                    SET is_read = true 
+                    WHERE user_id = ? AND message LIKE ? AND is_read = false";
             $message_pattern = "%order #$order_number has been delivered%";
             return $this->db->query($sql, [$user_id, $message_pattern]);
         } catch (Exception $e) {

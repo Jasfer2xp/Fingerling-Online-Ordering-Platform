@@ -22,7 +22,7 @@ if (isset($_POST['action'])) {
     switch ($action) {
         case 'mark_read':
             $notification_id = intval($_POST['notification_id']);
-            $sql = "UPDATE notifications SET is_read = 1 WHERE id = ? AND user_id = ?";
+            $sql = "UPDATE notifications SET is_read = true WHERE id = ? AND user_id = ?";
             $database->query($sql, [$notification_id, $user_id]);
             // For AJAX requests, just exit
             if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
@@ -33,7 +33,7 @@ if (isset($_POST['action'])) {
             break;
             
         case 'mark_all_read':
-            $sql = "UPDATE notifications SET is_read = 1 WHERE user_id = ?";
+            $sql = "UPDATE notifications SET is_read = true WHERE user_id = ?";
             $database->query($sql, [$user_id]);
             $_SESSION['success'] = 'All notifications marked as read.';
             break;
@@ -51,7 +51,7 @@ if (isset($_POST['action'])) {
             break;
             
         case 'delete_all_read':
-            $sql = "DELETE FROM notifications WHERE user_id = ? AND is_read = 1";
+            $sql = "DELETE FROM notifications WHERE user_id = ? AND is_read = true";
             $database->query($sql, [$user_id]);
             $_SESSION['success'] = 'All read notifications deleted.';
             break;

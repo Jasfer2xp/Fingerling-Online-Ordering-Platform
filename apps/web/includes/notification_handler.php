@@ -10,7 +10,7 @@ function getCustomerNotifications($customer_id, $database) {
     try {
         // Get unread notifications for the customer (using customer_id)
         $sql = "SELECT * FROM notifications 
-                WHERE customer_id = ? AND is_read = 0 
+                WHERE customer_id = ? AND is_read = false 
                 ORDER BY created_at DESC";
         return $database->fetchAll($sql, [$customer_id]);
     } catch (Exception $e) {
@@ -21,7 +21,7 @@ function getCustomerNotifications($customer_id, $database) {
 
 function markNotificationAsRead($notification_id, $database) {
     try {
-        $sql = "UPDATE notifications SET is_read = 1 WHERE id = ?";
+        $sql = "UPDATE notifications SET is_read = true WHERE id = ?";
         return $database->query($sql, [$notification_id]);
     } catch (Exception $e) {
         error_log("Error marking notification as read: " . $e->getMessage());

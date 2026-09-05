@@ -181,26 +181,26 @@ class Message {
                 $sql = "SELECT c.*, 
                                s.business_name as supplier_name,
                                s.user_id as supplier_user_id,
-                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = 0) as unread_count,
+                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = false) as unread_count,
                                (SELECT m.message FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message,
                                (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message_time
                         FROM conversations c
                         JOIN suppliers s ON c.supplier_id = s.id
                         WHERE c.customer_id = (SELECT id FROM customers WHERE user_id = ?)
-                        AND c.is_archived = 0
+                        AND c.is_archived = false
                         ORDER BY (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) DESC";
                 return $this->db->fetchAll($sql, [$user_id, $user_id]);
             } else if ($user_type === 'supplier') {
                 $sql = "SELECT c.*, 
                                CONCAT(cust.first_name, ' ', cust.last_name) as customer_name,
                                cust.user_id as customer_user_id,
-                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = 0) as unread_count,
+                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = false) as unread_count,
                                (SELECT m.message FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message,
                                (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message_time
                         FROM conversations c
                         JOIN customers cust ON c.customer_id = cust.id
                         WHERE c.supplier_id = (SELECT id FROM suppliers WHERE user_id = ?)
-                        AND c.is_archived = 0
+                        AND c.is_archived = false
                         ORDER BY (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) DESC";
                 return $this->db->fetchAll($sql, [$user_id, $user_id]);
             }
@@ -221,7 +221,7 @@ class Message {
         }
         
         try {
-            $sql = "UPDATE messages SET is_read = 1 WHERE conversation_id = ? AND receiver_id = ?";
+            $sql = "UPDATE messages SET is_read = true WHERE conversation_id = ? AND receiver_id = ?";
             return $this->db->query($sql, [$conversation_id, $user_id]);
         } catch (Exception $e) {
             error_log("Failed to mark messages as read: " . $e->getMessage());
@@ -267,7 +267,7 @@ class Message {
         }
         
         try {
-            $sql = "SELECT COUNT(*) as count FROM messages WHERE receiver_id = ? AND is_read = 0";
+            $sql = "SELECT COUNT(*) as count FROM messages WHERE receiver_id = ? AND is_read = false";
             $result = $this->db->fetch($sql, [$user_id]);
             return $result['count'] ?? 0;
         } catch (Exception $e) {
@@ -295,7 +295,7 @@ class Message {
             }
             
             // Update the message to mark it as unsent
-            $sql = "UPDATE messages SET message = ?, is_unsent = 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
+            $sql = "UPDATE messages SET message = ?, is_unsent = true, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
             $this->db->query($sql, ['[unsent]', $message_id]);
             return true;
         } catch (Exception $e) {
@@ -325,7 +325,7 @@ class Message {
             }
             
             // Archive the conversation
-            $sql = "UPDATE conversations SET is_archived = 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
+            $sql = "UPDATE conversations SET is_archived = true, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
             $this->db->query($sql, [$conversation_id]);
             return true;
         } catch (Exception $e) {
@@ -355,7 +355,7 @@ class Message {
             }
             
             // Unarchive the conversation
-            $sql = "UPDATE conversations SET is_archived = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
+            $sql = "UPDATE conversations SET is_archived = false, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
             $this->db->query($sql, [$conversation_id]);
             return true;
         } catch (Exception $e) {
@@ -420,26 +420,26 @@ class Message {
                 $sql = "SELECT c.*, 
                                s.business_name as supplier_name,
                                s.user_id as supplier_user_id,
-                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = 0) as unread_count,
+                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = false) as unread_count,
                                (SELECT m.message FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message,
                                (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message_time
                         FROM conversations c
                         JOIN suppliers s ON c.supplier_id = s.id
                         WHERE c.customer_id = (SELECT id FROM customers WHERE user_id = ?)
-                        AND c.is_archived = 1
+                        AND c.is_archived = true
                         ORDER BY (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) DESC";
                 return $this->db->fetchAll($sql, [$user_id, $user_id]);
             } else if ($user_type === 'supplier') {
                 $sql = "SELECT c.*, 
                                CONCAT(cust.first_name, ' ', cust.last_name) as customer_name,
                                cust.user_id as customer_user_id,
-                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = 0) as unread_count,
+                               (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id AND m.receiver_id = ? AND m.is_read = false) as unread_count,
                                (SELECT m.message FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message,
                                (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) as last_message_time
                         FROM conversations c
                         JOIN customers cust ON c.customer_id = cust.id
                         WHERE c.supplier_id = (SELECT id FROM suppliers WHERE user_id = ?)
-                        AND c.is_archived = 1
+                        AND c.is_archived = true
                         ORDER BY (SELECT m.created_at FROM messages m WHERE m.conversation_id = c.id ORDER BY m.created_at DESC LIMIT 1) DESC";
                 return $this->db->fetchAll($sql, [$user_id, $user_id]);
             }

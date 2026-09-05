@@ -22,7 +22,7 @@ $sql = "SELECT * FROM notifications
 $notifications = $database->fetchAll($sql, [$customer_id]);
 
 // Mark all notifications as read (using customer_id)
-$update_sql = "UPDATE notifications SET is_read = 1 WHERE customer_id = ?";
+$update_sql = "UPDATE notifications SET is_read = true WHERE customer_id = ?";
 $database->query($update_sql, [$customer_id]);
 
 $page_title = 'Notifications';

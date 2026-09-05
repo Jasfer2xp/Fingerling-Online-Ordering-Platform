@@ -27,11 +27,11 @@ try {
     }
     
     // Mark all notifications as read for this customer (using customer_id)
-    $sql = "UPDATE notifications SET is_read = 1 WHERE customer_id = ? AND is_read = 0";
+    $sql = "UPDATE notifications SET is_read = true WHERE customer_id = ? AND is_read = false";
     $database->query($sql, [$customer_id]);
     
     // Get updated count (should be 0)
-    $count_sql = "SELECT COUNT(*) as count FROM notifications WHERE customer_id = ? AND is_read = 0";
+    $count_sql = "SELECT COUNT(*) as count FROM notifications WHERE customer_id = ? AND is_read = false";
     $result = $database->fetch($count_sql, [$customer_id]);
     $unread_count = $result['count'] ?? 0;
     
