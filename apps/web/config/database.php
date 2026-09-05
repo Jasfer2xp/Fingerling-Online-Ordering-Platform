@@ -22,12 +22,28 @@ class Database {
         // Load database credentials from environment variables
         load_env();
         
-        $this->host = env('DB_HOST', 'localhost');
-        $this->db_name = env('DB_NAME', 'fingerlings');
-        $this->username = env('DB_USER', 'root');
-        $this->password = env('DB_PASS', '');
-        $this->port = env('DB_PORT', '');
-        $this->driver = strtolower((string) env('DB_DRIVER', ''));
+        $dbUrl = env('DATABASE_URL', env('DB_URL', ''));
+        if (!empty($dbUrl)) {
+            $parsed = parse_url($dbUrl);
+            if ($parsed && !empty($parsed['host'])) {
+                $this->host = $parsed['host'];
+                $this->port = !empty($parsed['port']) ? (string)$parsed['port'] : '';
+                $this->username = isset($parsed['user']) ? urldecode($parsed['user']) : '';
+                $this->password = isset($parsed['pass']) ? urldecode($parsed['pass']) : '';
+                $this->db_name = isset($parsed['path']) ? ltrim($parsed['path'], '/') : '';
+                $scheme = strtolower($parsed['scheme'] ?? '');
+                $this->driver = (strpos($scheme, 'postgr') !== false || strpos($scheme, 'pgsql') !== false) ? 'pgsql' : 'mysql';
+            }
+        }
+        
+        if (empty($this->host)) {
+            $this->host = env('DB_HOST', 'localhost');
+            $this->db_name = env('DB_NAME', 'fingerlings');
+            $this->username = env('DB_USER', 'root');
+            $this->password = env('DB_PASS', '');
+            $this->port = env('DB_PORT', '');
+            $this->driver = strtolower((string) env('DB_DRIVER', ''));
+        }
         
         if (empty($this->driver)) {
             if ($this->port === '5432' || $this->port === '6543' || stripos($this->host, 'supabase') !== false) {
