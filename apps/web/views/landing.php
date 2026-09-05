@@ -327,9 +327,9 @@ html, body { overflow-x: hidden; }
                 <li class="nav-item"><a class="nav-link" href="#stats">Statistics</a></li>
                 <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?php echo base_url('auth/login.php'); ?>"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?php echo base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-light" href="<?php echo base_url('auth/register.php'); ?>">
+                    <a class="btn btn-outline-light" href="<?php echo base_url('register'); ?>">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </li>
@@ -345,10 +345,10 @@ html, body { overflow-x: hidden; }
                 <h1 class="display-3 fw-bold mb-4"> Fresh, Certified <span class="text-warning">Fingerlings</span> — For Tangub City Delivery Only </h1>
                 <p class="lead mb-4 fs-5"> Connect easily with verified suppliers in Tangub City, explore a wide selection of fresh and certified fingerling species with complete details, and place your orders with full confidence knowing your stocks will be delivered safely and on time within the city. </p>
                 <div class="d-flex flex-column flex-md-row gap-3 mb-4">
-                    <a href="<?php echo base_url('auth/register.php?type=customer'); ?>" class="btn btn-warning btn-lg px-4 py-3">
+                    <a href="<?php echo base_url('register?type=customer'); ?>" class="btn btn-warning btn-lg px-4 py-3">
                         <i class="fas fa-shopping-cart"></i> Start Shopping
                     </a>
-                    <a href="<?php echo base_url('auth/register.php?type=supplier'); ?>" class="btn btn-outline-light btn-lg px-4 py-3">
+                    <a href="<?php echo base_url('register?type=supplier'); ?>" class="btn btn-outline-light btn-lg px-4 py-3">
                         <i class="fas fa-store"></i> Become a Supplier
                     </a>
                 </div>
@@ -480,7 +480,7 @@ html, body { overflow-x: hidden; }
                     <li class="mb-2"><i class="fas fa-check text-warning me-2"></i> Order updates and tracking</li>
                     <li class="mb-2"><i class="fas fa-check text-warning me-2"></i> Support that understands aquaculture</li>
                 </ul>
-                <a href="<?php echo base_url('auth/register.php'); ?>" class="btn btn-warning btn-lg">
+                <a href="<?php echo base_url('register'); ?>" class="btn btn-warning btn-lg">
                     <i class="fas fa-user-plus me-2"></i> Get Started
                 </a>
             </div>
@@ -508,8 +508,8 @@ html, body { overflow-x: hidden; }
                     <li><a href="<?php echo base_url(); ?>">Home</a></li>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="<?php echo base_url('auth/login.php'); ?>">Login</a></li>
-                    <li><a href="<?php echo base_url('auth/register.php'); ?>">Register</a></li>
+                    <li><a href="<?php echo base_url('login'); ?>">Login</a></li>
+                    <li><a href="<?php echo base_url('register'); ?>">Register</a></li>
                 </ul>
             </div>
             <div class="footer-contact">

@@ -6,22 +6,6 @@
   },
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/apps/web/assets/$1"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "/apps/web/uploads/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/apps/web/images/$1"
-    },
-    {
-      "src": "/gif/(.*)",
-      "dest": "/apps/web/gif/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }

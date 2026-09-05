@@ -41,12 +41,24 @@ date_default_timezone_set('Asia/Manila');
 define('APP_NAME', 'Fingerling Online Ordering Platform');
 define('APP_VERSION', '1.0.0');
 
-// Base URL (defaults to production domain unless APP_URL is provided)
-$configuredAppUrl = env('APP_URL');
-$defaultProductionUrl = 'https://fingerling.shop/'; // Corrected: Root domain
-$baseUrl = !empty($configuredAppUrl)
-    ? rtrim($configuredAppUrl, '/') . '/'
-    : $defaultProductionUrl;
+// Base URL (auto-normalizes scheme and defaults intelligently)
+$configuredAppUrl = trim((string) env('APP_URL', ''));
+
+if (!empty($configuredAppUrl)) {
+    if (!preg_match('~^https?://~i', $configuredAppUrl)) {
+        $scheme = (strpos($configuredAppUrl, 'localhost') !== false || strpos($configuredAppUrl, '127.0.0.1') !== false) ? 'http://' : 'https://';
+        $configuredAppUrl = $scheme . $configuredAppUrl;
+    }
+    $baseUrl = rtrim($configuredAppUrl, '/') . '/';
+} elseif (!empty($_SERVER['HTTP_HOST'])) {
+    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+        || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+    $scheme = $isHttps ? 'https://' : 'http://';
+    $baseUrl = $scheme . $_SERVER['HTTP_HOST'] . '/';
+} else {
+    $baseUrl = 'https://fingerlings.vercel.app/';
+}
 define('BASE_URL', $baseUrl);
 define('UPLOAD_PATH', APP_ROOT . '/uploads/');
 define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
@@ -145,6 +157,18 @@ function columnExists($table, $column) {
 }
 
 function base_url($path = '') { 
+    $path = trim((string) $path);
+    if ($path === '' || $path === '/') {
+        return BASE_URL;
+    }
+    if (preg_match('~^https?://~i', $path)) {
+        return $path;
+    }
+    // Clean any accidental leading domain segments
+    $host = parse_url(BASE_URL, PHP_URL_HOST);
+    if ($host && strpos($path, $host) === 0) {
+        $path = substr($path, strlen($host));
+    }
     return rtrim(BASE_URL, '/') . '/' . ltrim($path, '/'); 
 }
 function asset_url($path = '') { 
