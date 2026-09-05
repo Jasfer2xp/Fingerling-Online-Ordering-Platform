@@ -68,6 +68,10 @@ class Database {
         return $this->pdo;
     }
     
+    public function getDriver() {
+        return $this->driver;
+    }
+    
     public function getError() {
         return $this->connectionError;
     }

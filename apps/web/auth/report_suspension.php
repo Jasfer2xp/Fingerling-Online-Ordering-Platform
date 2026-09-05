@@ -21,15 +21,12 @@ function force_logout() {
 if (is_logged_in()) {
     $user_type = get_user_type();
     if ($user_type === 'supplier') {
-        $stmt = $pdo->prepare("SELECT id, status, suspension_reason FROM suppliers WHERE user_id = ?");
-        $stmt->execute([get_user_id()]);
-        $supplier = $stmt->fetch(PDO::FETCH_ASSOC);
+        $supplier = $database->fetch("SELECT id, status, suspension_reason FROM suppliers WHERE user_id = ?", [get_user_id()]);
 
         if ($supplier && $supplier['status'] === 'suspended') {
-            $appeal_check = $pdo->prepare("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1");
-            $appeal_check->execute([$supplier['id']]);
+            $appeal_check = $database->fetch("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1", [$supplier['id']]);
 
-            if ($appeal_check->fetch()) {
+            if ($appeal_check) {
                 force_logout();
                 $message = "Your account is suspended. You have already submitted an appeal. It is under review. Please check your email for updates.";
                 $show_form = false;
@@ -47,10 +44,9 @@ if (is_logged_in()) {
 }
 elseif (isset($_SESSION['suspended_supplier_id'])) {
     $supplier_id = $_SESSION['suspended_supplier_id'];
-    $appeal_check = $pdo->prepare("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1");
-    $appeal_check->execute([$supplier_id]);
+    $appeal_check = $database->fetch("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1", [$supplier_id]);
 
-    if ($appeal_check->fetch()) {
+    if ($appeal_check) {
         force_logout();
         $message = "Your account is suspended. You have already submitted an appeal. It is under review. Please check your email for updates.";
         $show_form = false;
@@ -71,8 +67,7 @@ if ($show_form && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Appeal message must be at least 50 characters.";
     } else {
         try {
-            $stmt = $pdo->prepare("INSERT INTO supplier_appeals (supplier_id, appeal_message, status, created_at) VALUES (?, ?, 'pending', NOW())");
-            $stmt->execute([$supplier_id, $appeal_message]);
+            $database->query("INSERT INTO supplier_appeals (supplier_id, appeal_message, status, created_at) VALUES (?, ?, 'pending', NOW())", [$supplier_id, $appeal_message]);
 
             send_app_email("admin@yoursite.com", "New Supplier Appeal", "Supplier ID #$supplier_id submitted an appeal.");
 
@@ -81,7 +76,7 @@ if ($show_form && $_SERVER['REQUEST_METHOD'] === 'POST') {
             unset($_SESSION['suspended_supplier_id'], $_SESSION['suspension_reason']);
             force_logout();
         } catch (Exception $e) {
-            $error = "Failed to submit appeal. Please try again later.";
+            $error = "Failed to submit appeal: " . $e->getMessage();
         }
     }
 }

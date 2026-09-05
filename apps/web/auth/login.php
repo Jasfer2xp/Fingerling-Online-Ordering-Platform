@@ -100,10 +100,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                         if ($supplier_data && $supplier_data['supplier_status'] === 'suspended') {
                             $supplier_id = $supplier_data['supplier_id'];
-                            $appeal_check = $pdo->prepare("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1");
-                            $appeal_check->execute([$supplier_id]);
+                            $appeal_check = $database->fetch("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1", [$supplier_id]);
 
-                            if ($appeal_check->fetch()) {
+                            if ($appeal_check) {
                                 $error = 'Your account is suspended. You have already submitted an appeal. It is under review. Please check your email for updates.';
                             } else {
                                 $_SESSION['suspended_supplier_id'] = $supplier_id;
@@ -129,17 +128,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // === SUPPLIER: Check suspension + appeal ===
                 if ($result['user_type'] === 'supplier') {
-                    $stmt = $pdo->prepare("SELECT id, status, suspension_reason FROM suppliers WHERE user_id = ?");
-                    $stmt->execute([$result['id']]);
-                    $supplier = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $supplier = $database->fetch("SELECT id, status, suspension_reason FROM suppliers WHERE user_id = ?", [$result['id']]);
 
                     if ($supplier && $supplier['status'] === 'suspended') {
                         $supplier_id = $supplier['id'];
+                        $appeal_check = $database->fetch("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1", [$supplier_id]);
 
-                        $appeal_check = $pdo->prepare("SELECT 1 FROM supplier_appeals WHERE supplier_id = ? LIMIT 1");
-                        $appeal_check->execute([$supplier_id]);
-
-                        if ($appeal_check->fetch()) {
+                        if ($appeal_check) {
                             // FORCE LOGOUT + SHOW MESSAGE
                             force_logout();
                             $error = 'Your account is suspended. You have already submitted an appeal. It is under review. Please check your email for updates.';
@@ -191,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         redirect(base_url('auth/verify_2fa.php'));
                     } else {
                         clear_2fa_session_flags();
-                        $error = 'Failed to send OTP. Please try again.';
+                        $error = 'Failed to send OTP: ' . ($sendResult['error'] ?? 'Please try again.');
                         if (mail_is_local_dev_mode()) {
                             $error .= ' Check SMTP_USERNAME/SMTP_PASSWORD in .env (use a Gmail App Password, not your login password).';
                         }
@@ -201,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } catch (Exception $e) {
             error_log("Login error: " . $e->getMessage());
-            $error = 'Login failed. Please try again.';
+            $error = 'Login failed: ' . $e->getMessage();
         }
     }
 }

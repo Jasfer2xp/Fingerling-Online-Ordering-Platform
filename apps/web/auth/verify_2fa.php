@@ -21,11 +21,12 @@ $devOtpMailError = $_SESSION['dev_otp_mail_error'] ?? '';
 
 if ($user_type === 'supplier') {
     try {
-        $stmt = $pdo->prepare("SELECT s.id, s.status, s.suspension_reason
-                               FROM suppliers s
-                               WHERE s.user_id = ?");
-        $stmt->execute([$user_id]);
-        $supplier = $stmt->fetch(PDO::FETCH_ASSOC);
+        $supplier = $database->fetch(
+            "SELECT s.id, s.status, s.suspension_reason
+             FROM suppliers s
+             WHERE s.user_id = ?",
+            [$user_id]
+        );
 
         if ($supplier && $supplier['status'] === 'suspended') {
             clear_2fa_session_flags();
@@ -63,7 +64,7 @@ if (isset($_POST['resend_otp'])) {
                 $success = 'A new OTP has been sent to your email.';
             }
         } else {
-            $error = 'Failed to send email. Please try again.';
+            $error = 'Failed to send email: ' . ($sendResult['error'] ?? 'Please try again.');
             error_log('2FA resend failed: ' . ($sendResult['error'] ?? 'unknown'));
         }
     }
@@ -97,13 +98,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['otp']) || isset($_PO
                     $token = $_SESSION['2fa_remember_token'];
                     setcookie('remember_token', $token, time() + (30 * 24 * 60 * 60), '/', '', true, true);
 
-                    if (isset($pdo) && $pdo instanceof PDO) {
-                        try {
-                            $stmt = $pdo->prepare("INSERT INTO remember_tokens (user_id, token, expires_at) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 30 DAY))");
-                            $stmt->execute([$user_id, $token]);
-                        } catch (Exception $rememberException) {
-                            error_log('Remember token save failed: ' . $rememberException->getMessage());
-                        }
+                    try {
+                        $expiresAt = date('Y-m-d H:i:s', time() + (30 * 24 * 60 * 60));
+                        $database->query("DELETE FROM remember_tokens WHERE user_id = ?", [$user_id]);
+                        $database->query("INSERT INTO remember_tokens (user_id, token, expires_at) VALUES (?, ?, ?)", [$user_id, $token, $expiresAt]);
+                    } catch (Exception $rememberException) {
+                        error_log('Remember token save failed: ' . $rememberException->getMessage());
                     }
                 }
 

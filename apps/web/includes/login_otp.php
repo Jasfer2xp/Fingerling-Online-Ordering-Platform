@@ -27,18 +27,32 @@ function ensure_login_otp_table($database) {
     }
 
     try {
-        $database->query(
-            "CREATE TABLE IF NOT EXISTS user_2fa_otps (
-                id SERIAL PRIMARY KEY,
-                user_id INT NOT NULL,
-                otp_code VARCHAR(255) NOT NULL,
-                expires_at TIMESTAMP NOT NULL,
-                attempts INT NOT NULL DEFAULT 0,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )"
-        );
+        $driver = method_exists($database, 'getDriver') ? $database->getDriver() : 'mysql';
+        if ($driver === 'pgsql') {
+            $database->query(
+                "CREATE TABLE IF NOT EXISTS user_2fa_otps (
+                    id SERIAL PRIMARY KEY,
+                    user_id INT NOT NULL UNIQUE,
+                    otp_code VARCHAR(255) NOT NULL,
+                    expires_at TIMESTAMP NOT NULL,
+                    attempts INT NOT NULL DEFAULT 0,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )"
+            );
+        } else {
+            $database->query(
+                "CREATE TABLE IF NOT EXISTS user_2fa_otps (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    user_id INT NOT NULL UNIQUE,
+                    otp_code VARCHAR(255) NOT NULL,
+                    expires_at DATETIME NOT NULL,
+                    attempts INT NOT NULL DEFAULT 0,
+                    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"
+            );
+        }
     } catch (Exception $e) {
-        // Table likely already created in PostgreSQL / MySQL schema import
+        error_log('ensure_login_otp_table: ' . $e->getMessage());
     }
 
     $ensured = true;
@@ -54,23 +68,41 @@ function store_login_otp($database, $user_id, $otp_plain) {
     $otp_hash = password_hash($otp_plain, PASSWORD_DEFAULT);
     $expires_at = date('Y-m-d H:i:s', time() + (LOGIN_OTP_EXPIRY_MINUTES * 60));
 
-    // Universal delete-then-insert works identically on PostgreSQL and MySQL
+    $stored = false;
+    // Primary: user_2fa_otps
     try {
         $database->query("DELETE FROM user_2fa_otps WHERE user_id = ?", [$user_id]);
-    } catch (Exception $e) {}
+        $database->query(
+            "INSERT INTO user_2fa_otps (user_id, otp_code, expires_at, attempts, created_at)
+             VALUES (?, ?, ?, 0, NOW())",
+            [$user_id, $otp_hash, $expires_at]
+        );
+        $stored = true;
+    } catch (Exception $e) {
+        error_log('Store in user_2fa_otps failed, trying user_otps: ' . $e->getMessage());
+    }
 
-    $database->query(
-        "INSERT INTO user_2fa_otps (user_id, otp_code, expires_at, attempts, created_at)
-         VALUES (?, ?, ?, 0, NOW())",
-        [$user_id, $otp_hash, $expires_at]
-    );
+    // Fallback: user_otps (existing schema table)
+    if (!$stored) {
+        try {
+            $database->query("DELETE FROM user_otps WHERE user_id = ?", [$user_id]);
+            $database->query(
+                "INSERT INTO user_otps (user_id, otp, expires_at, created_at) VALUES (?, ?, ?, NOW())",
+                [$user_id, $otp_plain, $expires_at]
+            );
+            $stored = true;
+        } catch (Exception $e2) {
+            error_log('Store in user_otps also failed: ' . $e2->getMessage());
+            throw new Exception("Unable to save OTP code. Database error: " . $e2->getMessage());
+        }
+    }
 
     return $otp_plain;
 }
 
 function clear_login_otp($database, $user_id) {
-    ensure_login_otp_table($database);
-    $database->query("DELETE FROM user_2fa_otps WHERE user_id = ?", [$user_id]);
+    try { $database->query("DELETE FROM user_2fa_otps WHERE user_id = ?", [$user_id]); } catch (Exception $e) {}
+    try { $database->query("DELETE FROM user_otps WHERE user_id = ?", [$user_id]); } catch (Exception $e) {}
 }
 
 function send_login_otp_email($email, $otp_plain) {
@@ -94,7 +126,7 @@ function issue_login_otp($database, $user_id, $email) {
         error_log('Login OTP store failed: ' . $e->getMessage());
         return [
             'success' => false,
-            'error' => 'Could not save OTP. Please try again.',
+            'error' => 'Could not save OTP: ' . $e->getMessage(),
             'otp_plain' => null,
             'dev_fallback' => false,
         ];
@@ -130,53 +162,70 @@ function issue_login_otp($database, $user_id, $email) {
 function verify_login_otp($database, $user_id, $otp_input) {
     ensure_login_otp_table($database);
 
-    $record = $database->fetch(
-        "SELECT otp_code, attempts FROM user_2fa_otps WHERE user_id = ? AND expires_at > NOW()",
-        [$user_id]
-    );
+    $record = null;
+    try {
+        $record = $database->fetch(
+            "SELECT otp_code, attempts FROM user_2fa_otps WHERE user_id = ? AND expires_at > NOW()",
+            [$user_id]
+        );
+    } catch (Exception $e) {}
 
-    if (!$record) {
-        return ['success' => false, 'error' => 'Invalid or expired OTP code.'];
-    }
+    if ($record) {
+        $attempts = (int) ($record['attempts'] ?? 0);
+        if ($attempts >= LOGIN_OTP_MAX_ATTEMPTS) {
+            return [
+                'success' => false,
+                'error' => 'Too many failed attempts. Please request a new OTP.',
+            ];
+        }
 
-    $attempts = (int) ($record['attempts'] ?? 0);
-    if ($attempts >= LOGIN_OTP_MAX_ATTEMPTS) {
+        $stored = (string) $record['otp_code'];
+        $valid = password_verify($otp_input, $stored);
+
+        // Migration path for plain text
+        if (!$valid && strlen($stored) === 6 && ctype_digit($stored) && hash_equals($stored, $otp_input)) {
+            $valid = true;
+        }
+
+        if ($valid) {
+            clear_login_otp($database, $user_id);
+            return ['success' => true, 'error' => ''];
+        }
+
+        try {
+            $database->query(
+                "UPDATE user_2fa_otps SET attempts = attempts + 1 WHERE user_id = ?",
+                [$user_id]
+            );
+        } catch (Exception $e) {}
+
+        $remaining = LOGIN_OTP_MAX_ATTEMPTS - ($attempts + 1);
+        if ($remaining <= 0) {
+            return [
+                'success' => false,
+                'error' => 'Too many failed attempts. Please request a new OTP.',
+            ];
+        }
+
         return [
             'success' => false,
-            'error' => 'Too many failed attempts. Please request a new OTP.',
+            'error' => 'Invalid OTP code. ' . $remaining . ' attempt(s) remaining.',
         ];
     }
 
-    $stored = (string) $record['otp_code'];
-    $valid = password_verify($otp_input, $stored);
+    // Fallback: check user_otps table
+    try {
+        $rec2 = $database->fetch(
+            "SELECT otp FROM user_otps WHERE user_id = ? AND expires_at > NOW()",
+            [$user_id]
+        );
+        if ($rec2 && (hash_equals((string)$rec2['otp'], (string)$otp_input) || password_verify($otp_input, (string)$rec2['otp']))) {
+            clear_login_otp($database, $user_id);
+            return ['success' => true, 'error' => ''];
+        }
+    } catch (Exception $e2) {}
 
-    // One-time migration path for legacy plain-text OTP rows.
-    if (!$valid && strlen($stored) === 6 && ctype_digit($stored) && hash_equals($stored, $otp_input)) {
-        $valid = true;
-    }
-
-    if ($valid) {
-        clear_login_otp($database, $user_id);
-        return ['success' => true, 'error' => ''];
-    }
-
-    $database->query(
-        "UPDATE user_2fa_otps SET attempts = attempts + 1 WHERE user_id = ?",
-        [$user_id]
-    );
-
-    $remaining = LOGIN_OTP_MAX_ATTEMPTS - ($attempts + 1);
-    if ($remaining <= 0) {
-        return [
-            'success' => false,
-            'error' => 'Too many failed attempts. Please request a new OTP.',
-        ];
-    }
-
-    return [
-        'success' => false,
-        'error' => 'Invalid OTP code. ' . $remaining . ' attempt(s) remaining.',
-    ];
+    return ['success' => false, 'error' => 'Invalid or expired OTP code.'];
 }
 
 function login_otp_resend_allowed() {
