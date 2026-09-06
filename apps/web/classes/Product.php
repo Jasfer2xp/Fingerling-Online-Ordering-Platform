@@ -525,42 +525,43 @@ class Product {
      */
     public function getNearbyProducts($lat, $lng, $radius = 50, $limit = 12) {
         $sql = "
-            SELECT 
-                i.*,
-                i.image_path,
-                sp.name as species_name,
-                sp.scientific_name,
-                sp.image_url,
-                s.business_name,
-                s.barangay,
-                s.city,
-                s.province,
-                s.rating,
-                s.total_ratings,
-                COALESCE(sales_count.total_sold, 0) as total_sold,
-                (6371 * acos(
-                    cos(radians(?)) * cos(radians(s.latitude)) * 
-                    cos(radians(s.longitude) - radians(?)) + 
-                    sin(radians(?)) * sin(radians(s.latitude))
-                )) AS distance_km
-            FROM inventory i
-            JOIN species sp ON i.species_id = sp.id
-            JOIN suppliers s ON i.supplier_id = s.id
-            LEFT JOIN (
+            SELECT * FROM (
                 SELECT 
-                    inventory_id, 
-                    SUM(quantity) as total_sold
-                FROM order_items oi
-                JOIN orders o ON oi.order_id = o.id
-                WHERE o.status IN ('delivered', 'out_for_delivery', 'preparing', 'confirmed')
-                GROUP BY inventory_id
-            ) sales_count ON i.id = sales_count.inventory_id
-            WHERE i.availability_status = 'available'
-              AND i.stock_quantity > 0
-              AND s.status = 'approved'
-              AND s.latitude IS NOT NULL 
-              AND s.longitude IS NOT NULL
-            HAVING distance_km <= ?
+                    i.id,
+                    sp.name as species_name,
+                    sp.image_url,
+                    i.image_path,
+                    s.business_name,
+                    s.barangay,
+                    s.city,
+                    s.province,
+                    s.rating,
+                    s.total_ratings,
+                    COALESCE(sales_count.total_sold, 0) as total_sold,
+                    (6371 * acos(
+                        cos(radians(?)) * cos(radians(s.latitude)) * 
+                        cos(radians(s.longitude) - radians(?)) + 
+                        sin(radians(?)) * sin(radians(s.latitude))
+                    )) AS distance_km
+                FROM inventory i
+                JOIN species sp ON i.species_id = sp.id
+                JOIN suppliers s ON i.supplier_id = s.id
+                LEFT JOIN (
+                    SELECT 
+                        inventory_id, 
+                        SUM(quantity) as total_sold
+                    FROM order_items oi
+                    JOIN orders o ON oi.order_id = o.id
+                    WHERE o.status IN ('delivered', 'out_for_delivery', 'preparing', 'confirmed')
+                    GROUP BY inventory_id
+                ) sales_count ON i.id = sales_count.inventory_id
+                WHERE i.availability_status = 'available'
+                  AND i.stock_quantity > 0
+                  AND s.status = 'approved'
+                  AND s.latitude IS NOT NULL 
+                  AND s.longitude IS NOT NULL
+            ) sub
+            WHERE distance_km <= ?
             ORDER BY distance_km ASC
             LIMIT ?
         ";

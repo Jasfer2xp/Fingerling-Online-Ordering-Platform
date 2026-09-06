@@ -158,24 +158,26 @@ $featured_products = $product->getTopPerformingProducts(8, ['min_sold' => 1000])
 
 // Get nearest suppliers (3 closest)
 $sql = "
-    SELECT 
-        s.*,
-        (6371 * acos(
-            cos(radians(?)) * cos(radians(s.latitude)) * 
-            cos(radians(s.longitude) - radians(?)) + 
-            sin(radians(?)) * sin(radians(s.latitude))
-        )) AS distance_km,
-        COUNT(DISTINCT i.id) as product_count,
-        COALESCE(AVG(f.rating), 0) as avg_rating,
-        COUNT(DISTINCT f.customer_id) as total_reviews
-    FROM suppliers s
-    LEFT JOIN inventory i ON s.id = i.supplier_id AND i.availability_status = 'available'
-    LEFT JOIN feedback f ON s.id = f.supplier_id
-    WHERE s.status = 'approved'
-      AND s.latitude IS NOT NULL 
-      AND s.longitude IS NOT NULL
-    GROUP BY s.id
-    HAVING distance_km <= 50
+    SELECT * FROM (
+        SELECT 
+            s.*,
+            (6371 * acos(
+                cos(radians(?)) * cos(radians(s.latitude)) * 
+                cos(radians(s.longitude) - radians(?)) + 
+                sin(radians(?)) * sin(radians(s.latitude))
+            )) AS distance_km,
+            COUNT(DISTINCT i.id) as product_count,
+            COALESCE(AVG(f.rating), 0) as avg_rating,
+            COUNT(DISTINCT f.customer_id) as total_reviews
+        FROM suppliers s
+        LEFT JOIN inventory i ON s.id = i.supplier_id AND i.availability_status = 'available'
+        LEFT JOIN feedback f ON s.id = f.supplier_id
+        WHERE s.status = 'approved'
+          AND s.latitude IS NOT NULL 
+          AND s.longitude IS NOT NULL
+        GROUP BY s.id
+    ) sub
+    WHERE distance_km <= 50
     ORDER BY distance_km ASC
     LIMIT 3
 ";

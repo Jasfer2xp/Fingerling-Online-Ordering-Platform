@@ -4,6 +4,21 @@
  * Vercel Serverless Entry Point Router
  */
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+set_exception_handler(function ($e) {
+    http_response_code(500);
+    echo '<div style="font-family:sans-serif;padding:2rem;background:#fff5f5;color:#c53030;border:1px solid #feb2b2;border-radius:8px;margin:2rem auto;max-width:800px;">';
+    echo '<h2 style="margin-top:0;">Application Error</h2>';
+    echo '<p><strong>Message:</strong> ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</p>';
+    echo '<p><strong>File:</strong> ' . htmlspecialchars($e->getFile(), ENT_QUOTES, 'UTF-8') . ' : line ' . $e->getLine() . '</p>';
+    echo '<pre style="background:#2d3748;color:#fff;padding:1rem;border-radius:4px;overflow:auto;">' . htmlspecialchars($e->getTraceAsString(), ENT_QUOTES, 'UTF-8') . '</pre>';
+    echo '</div>';
+    exit;
+});
+
 $baseDir = dirname(__DIR__) . '/apps/web';
 chdir($baseDir);
 set_include_path(get_include_path() . PATH_SEPARATOR . $baseDir);
