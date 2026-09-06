@@ -114,44 +114,8 @@ $sql = "SELECT s.*,
 $suppliers = $database->fetchAll($sql);
 
 // Get customer location (use default if not available)
-$customer_lat = $profile['latitude'] ?? null;
-$customer_lng = $profile['longitude'] ?? null;
-
-// If customer doesn't have coordinates, try to geocode their address
-if (empty($customer_lat) || empty($customer_lng)) {
-    // Build address from available location data
-    $address_parts = [];
-    if (!empty($profile['barangay'])) {
-        $address_parts[] = $profile['barangay'];
-    }
-    if (!empty($profile['city'])) {
-        $address_parts[] = $profile['city'];
-    } else {
-        $address_parts[] = 'Tangub City'; // Default city
-    }
-    if (!empty($profile['province'])) {
-        $address_parts[] = $profile['province'];
-    } else {
-        $address_parts[] = 'Misamis Occidental'; // Default province
-    }
-    
-    $address = implode(', ', $address_parts);
-    
-    // Try to geocode the address
-    $geocode_result = geocodeAddress($address);
-    if ($geocode_result['success']) {
-        $customer_lat = $geocode_result['latitude'];
-        $customer_lng = $geocode_result['longitude'];
-    } else {
-        // Fallback to default coordinates if geocoding fails
-        $customer_lat = 8.1586;  // Default: Tangub City
-        $customer_lng = 123.7478;
-    }
-} else {
-    // Ensure we have float values
-    $customer_lat = (float)$customer_lat;
-    $customer_lng = (float)$customer_lng;
-}
+$customer_lat = !empty($profile['latitude']) ? (float)$profile['latitude'] : 8.0565; // Default: Tangub City
+$customer_lng = !empty($profile['longitude']) ? (float)$profile['longitude'] : 123.7480;
 
 // Get featured products: Most sold fingerlings (1000+ sold)
 $featured_products = $product->getTopPerformingProducts(8, ['min_sold' => 1000]);

@@ -9,10 +9,9 @@ class Cart {
     private $db;
     private $customer_id;
 
-    public function __construct($database, $customer_id) {
+    public function __construct($database, $customer_id = null) {
         $this->db = $database;
         $this->customer_id = $customer_id;
-        $this->createCartTable();
     }
 
     /**

@@ -12,7 +12,6 @@ class User {
     
     public function __construct($database) {
         $this->db = $database;
-        $this->ensureEmailVerificationTable();
     }
     
     public function register($email, $password, $user_type, $profile_data = []) {
